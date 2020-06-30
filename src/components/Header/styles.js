@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  height: 117px;
 
-  height: 80px;
   padding: 20px 30px;
 
   h1 {
@@ -21,7 +21,7 @@ export const Search = styled.div`
   input {
     padding: 6px 12px 8px;
     border: 1px solid #dadde2;
-    border-radius: 4px;
+    border-radius: 3px;
     color: #707070;
     width: 40%;
     margin-right: 10px;
@@ -46,7 +46,7 @@ export const Button = styled.button`
   padding: 0 10px;
   background: #e4e6eb;
   border: 0;
-  border-radius: 4px;
+  border-radius: 3px;
   font-size: 13px;
   color: #566780;
 
@@ -69,10 +69,16 @@ export const Dropdown = styled.div`
   margin-top: 20px;
 `;
 
+export const LeftSection = styled.div`
+  display: flex;
+  margin-right: 20px;
+  border-right: 1px solid #eee;
+`;
+
 export const Person = styled.div`
   display: flex;
   align-items: center;
-  margin-right: 16px;
+  margin-right: 20px;
 
   p {
     color: #566780;
@@ -81,9 +87,31 @@ export const Person = styled.div`
 `;
 
 export const Circle = styled.div`
-  height: 30px;
-  width: 30px;
+  min-height: 30px;
+  min-width: 30px;
   border-radius: 50%;
   background: #eff5fb;
   margin-right: 8px;
+`;
+
+export const RightSection = styled.div`
+  display: flex;
+  align-items: center;
+
+  div {
+    width: 70px;
+    height: 24px;
+    border-radius: 3px;
+    background: #0000000a;
+    margin-right: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    p {
+      color: #818181;
+      font-size: 12px;
+    }
+  }
 `;

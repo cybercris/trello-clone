@@ -3,7 +3,16 @@ import Ripples from 'react-ripples';
 
 import api from '../../services/api';
 
-import { Container, Search, Button, Dropdown, Circle, Person } from './styles';
+import {
+  Container,
+  Search,
+  Button,
+  Dropdown,
+  Circle,
+  Person,
+  LeftSection,
+  RightSection,
+} from './styles';
 import Arrowdown from '../../assets/icons/arrowdown.svg';
 
 export default function Header() {
@@ -52,12 +61,21 @@ export default function Header() {
       </Search>
       {showDropdown && (
         <Dropdown>
-          {people.map((person) => (
-            <Person key={person.id}>
-              <Circle />
-              <p>{person.name}</p>
-            </Person>
-          ))}
+          <LeftSection>
+            {people.map((person) => (
+              <Person key={person.id}>
+                <Circle />
+                <p>{person.name}</p>
+              </Person>
+            ))}
+          </LeftSection>
+          <RightSection>
+            {tags.map((tag) => (
+              <div key={tag}>
+                <p>{tag}</p>
+              </div>
+            ))}
+          </RightSection>
         </Dropdown>
       )}
     </Container>
