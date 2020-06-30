@@ -3,9 +3,9 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  height: 117px;
+  /* height: 117px; */
 
-  padding: 20px 30px;
+  padding: 20px 30px 10px;
 
   h1 {
     color: #707070;

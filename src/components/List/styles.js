@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   /* padding: 0 15px; */
   height: 100%;
-  flex: 0 0 300px;
+  flex: 0 0 320px;
   background: #f4f5f7;
 
   & + div {
@@ -27,6 +27,18 @@ export const Container = styled.div`
     }
 
     button {
+      height: 16px;
+      border: 0;
+      cursor: pointer;
+      background: #e4e6eb;
+
+      img {
+        height: 16px;
+      }
     }
+  }
+
+  ul {
+    padding: 10px 12px;
   }
 `;
