@@ -1,0 +1,72 @@
+{
+  "boards": [
+    {
+      "id": 1,
+      "title": "Contratar um Front-End Engineer",
+      "columns": [
+        {
+          "id": 1,
+          "title": "Coisas para fazer",
+          "cards": [
+            {
+              "id": 2,
+              "title": "Agendar as entrevistas",
+              "tags": ["RH"]
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "title": "Em andamento",
+          "cards": [
+            {
+              "id": 1,
+              "title": "Elaborar o desafio técnico",
+              "tags": ["Back-End", "Front-End"],
+              "members": [
+                {
+                  "id": 1,
+                  "name": "Alex Pessoa",
+                  "photoURL": null
+                },
+                {
+                  "id": 2,
+                  "name": "Marcos Martins",
+                  "photoURL": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "title": "Concluído",
+          "cards": []
+        }
+      ]
+    }
+  ],
+  "people": [
+    {
+      "id": 1,
+      "name": "Alex Pessoa",
+      "photoURL": null
+    },
+    {
+      "id": 2,
+      "name": "Marcos Martins",
+      "photoURL": null
+    },
+    {
+      "id": 3,
+      "name": "Guilherme Melo",
+      "photoURL": null
+    },
+    {
+      "id": 4,
+      "name": "Marcio Mendes",
+      "photoURL": null
+    }
+  ],
+  "tags": ["Design", "Front-End", "Back-End", "RH"]
+}
