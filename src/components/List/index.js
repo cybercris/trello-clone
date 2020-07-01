@@ -5,22 +5,20 @@ import Card from '../Card';
 import { Container } from './styles';
 import Options from '../../assets/icons/options.svg';
 
-export default function List() {
+export default function List({ data }) {
   return (
     <Container>
       <header>
-        <h2>A INICIAR</h2>
+        <h2>{data?.title}</h2>
         <button type="button">
           <img src={Options} alt="icon add" />
         </button>
       </header>
 
       <ul>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {data?.cards?.map((card) => (
+          <Card key={card.id} data={card} />
+        ))}
       </ul>
     </Container>
   );

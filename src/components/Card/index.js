@@ -2,18 +2,19 @@ import React from 'react';
 
 import { Container } from './styles';
 
-export default function Card() {
+export default function Card({ data }) {
   return (
     <Container>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos nostrum
-        adipisci mollitia deserunt esse reprehenderit facere.
-      </p>
+      <p>{data?.title}</p>
 
-      <div>
-        <p>Desenvolvimento</p>
+      <footer>
+        <div>
+          {data?.tags?.map((tag) => (
+            <p key={tag}>{tag}</p>
+          ))}
+        </div>
         <img src="https://api.adorable.io/avatars/abott@adorable.png" alt="" />
-      </div>
+      </footer>
     </Container>
   );
 }
