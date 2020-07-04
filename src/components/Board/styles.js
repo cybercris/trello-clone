@@ -1,9 +1,18 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px 30px;
+
+  ${(props) =>
+    props.isLoading &&
+    css`
+      padding: 0;
+      height: 100vh;
+      align-items: center;
+      justify-content: center;
+    `}
 `;
 
 export const BoardHeader = styled.header`
@@ -45,7 +54,6 @@ export const Button = styled.button`
   align-items: center;
   justify-content: center;
 
-  height: 100%;
   width: 164px;
   padding: 0 10px;
   background: #e4e6eb;

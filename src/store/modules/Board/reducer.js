@@ -1,10 +1,10 @@
 import produce from 'immer';
 
 const INITIAL_STATE = {
-  loading: false,
   board: [],
   people: [],
   tags: [],
+  loading: false,
 };
 
 export default function auth(state = INITIAL_STATE, action) {
@@ -15,9 +15,7 @@ export default function auth(state = INITIAL_STATE, action) {
         break;
       }
       case '@trelloClone/SEARCH_SUCCESS': {
-        draft.board = action.payload.board;
-        draft.people = action.payload.people;
-        draft.tags = action.payload.tags;
+        draft[action.payload.type] = action.payload.list;
         draft.loading = false;
         break;
       }

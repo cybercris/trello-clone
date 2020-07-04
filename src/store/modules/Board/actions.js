@@ -4,9 +4,9 @@ export function searchRequest() {
   };
 }
 
-export function searchSuccess(board, people, tags) {
+export function searchSuccess(type, list) {
   return {
     type: '@trelloClone/SEARCH_SUCCESS',
-    payload: { board, people, tags },
+    payload: { type, list },
   };
 }
