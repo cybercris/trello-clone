@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
   padding: 14px 12px;
@@ -6,6 +6,22 @@ export const Container = styled.div`
   box-shadow: 0px 1px 3px #00000029;
   border-radius: 3px;
   min-width: 320px;
+  cursor: grab;
+
+  ${(props) =>
+    props.isDragging &&
+    css`
+      border: 2px dashed rgba(0, 0, 0, 0.2);
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      cursor: grabbing;
+
+      p,
+      footer {
+        opacity: 0;
+      }
+    `}
 
   footer {
     display: flex;
@@ -36,8 +52,4 @@ export const Container = styled.div`
       border-radius: 50%;
     }
   }
-
-  /* & + div {
-    margin-top: 8px;
-  } */
 `;
