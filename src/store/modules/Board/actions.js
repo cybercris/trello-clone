@@ -18,10 +18,10 @@ export function addCardRequest(card, listIndex) {
   };
 }
 
-export function addCardSuccess(list) {
+export function addCardSuccess(board) {
   return {
     type: '@trelloClone/ADD_CARD_SUCCESS',
-    payload: { list },
+    payload: { board },
   };
 }
 
@@ -32,10 +32,10 @@ export function editCardRequest(card, listIndex) {
   };
 }
 
-export function editCardSuccess(list) {
+export function editCardSuccess(board) {
   return {
     type: '@trelloClone/EDIT_CARD_SUCCESS',
-    payload: { list },
+    payload: { board },
   };
 }
 
@@ -46,9 +46,9 @@ export function deleteCardRequest(id, listIndex) {
   };
 }
 
-export function deleteCardSuccess(list) {
+export function deleteCardSuccess(board) {
   return {
     type: '@trelloClone/DELETE_CARD_SUCCESS',
-    payload: { list },
+    payload: { board },
   };
 }

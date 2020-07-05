@@ -1,9 +1,12 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useDrag, useDrop } from 'react-dnd';
 import { MdEdit, MdClose, MdDeleteForever } from 'react-icons/md';
 
-import { deleteCardRequest } from '../../store/modules/Board/actions';
+import {
+  deleteCardRequest,
+  editCardRequest,
+} from '../../store/modules/Board/actions';
 
 import { Container, Info, Actions } from './styles';
 
@@ -52,6 +55,19 @@ export default function Card({ data, index, listIndex }) {
   function cancelEdit() {
     setShowForm(!showForm);
     setCardTitle(data?.title);
+  }
+
+  function editCard(e, title) {
+    e.preventDefault();
+
+    const newCard = {
+      id: data.id,
+      title,
+      tags: data.tags,
+    };
+
+    dispatch(editCardRequest(newCard, listIndex));
+    setShowForm(!showForm);
   }
 
   return (
@@ -116,7 +132,9 @@ export default function Card({ data, index, listIndex }) {
             </Info>
           </Container>
           <Actions>
-            <button type="submit">Salvar</button>
+            <button type="submit" onClick={(e) => editCard(e, cardTitle)}>
+              Salvar
+            </button>
             <button type="button" onClick={() => cancelEdit()}>
               <MdClose size={32} color="#979797" />
             </button>

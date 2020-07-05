@@ -26,7 +26,7 @@ export default function auth(state = INITIAL_STATE, action) {
         break;
       }
       case '@trelloClone/ADD_CARD_SUCCESS': {
-        draft.board.columns[draft.listIndex].cards = action.payload.list;
+        draft.board = action.payload.board;
         break;
       }
       case '@trelloClone/EDIT_CARD_REQUEST': {
@@ -36,7 +36,7 @@ export default function auth(state = INITIAL_STATE, action) {
         break;
       }
       case '@trelloClone/DELETE_CARD_SUCCESS': {
-        draft.board.columns[draft.listIndex].cards = action.payload.list;
+        draft.board = action.payload.board;
         break;
       }
       default:

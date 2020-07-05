@@ -128,6 +128,7 @@ export const Actions = styled.footer`
   display: flex;
   align-items: center;
   margin-top: 10px;
+  margin-bottom: 10px;
 
   button {
     cursor: pointer;

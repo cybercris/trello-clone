@@ -16,8 +16,13 @@
               ]
             },
             {
+              "id": 3,
+              "title": "a",
+              "tags": []
+            },
+            {
               "id": 4,
-              "title": "b",
+              "title": "testandoooooo",
               "tags": []
             }
           ]
@@ -27,15 +32,8 @@
           "title": "Em andamento",
           "cards": [
             {
-              "id": 2,
-              "title": "Agendar as entrevistas",
-              "tags": [
-                "RH"
-              ]
-            },
-            {
-              "id": 4,
-              "title": "b",
+              "id": 5,
+              "title": "aaaa",
               "tags": []
             }
           ]

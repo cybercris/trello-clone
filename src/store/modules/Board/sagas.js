@@ -54,10 +54,8 @@ export function* addCard({ payload }) {
       });
     });
 
-    const cards = boardToUpdate.columns[listIndex].cards;
-
     yield call(api.put, 'boards/1', boardToUpdate);
-    yield put(addCardSuccess(cards));
+    yield put(addCardSuccess(boardToUpdate));
   } catch (err) {
     toast.error('Um erro aconteceu: ', err);
   }
@@ -76,9 +74,8 @@ export function* editCard({ payload }) {
       );
     });
 
-    const cards = boardToUpdate.columns[listIndex].cards;
-
-    yield put(addCardSuccess(cards));
+    yield call(api.put, 'boards/1', boardToUpdate);
+    yield put(addCardSuccess(boardToUpdate));
   } catch (err) {
     toast.error('Um erro aconteceu: ', err);
   }
@@ -86,7 +83,7 @@ export function* editCard({ payload }) {
 
 export function* deleteCard({ payload }) {
   try {
-    const { id, listIndex } = payload;
+    const { id } = payload;
     console.log(id);
     const board = yield select((state) => state.Board.board);
 
@@ -96,10 +93,8 @@ export function* deleteCard({ payload }) {
       });
     });
 
-    const { cards } = boardToUpdate.columns[listIndex];
-
     yield call(api.put, 'boards/1', boardToUpdate);
-    yield put(deleteCardSuccess(cards));
+    yield put(deleteCardSuccess(boardToUpdate));
   } catch (err) {}
 }
 
