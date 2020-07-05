@@ -17,8 +17,10 @@ import {
   LeftSection,
   RightSection,
   BoardColumns,
+  ButtonAdd,
 } from './styles';
 import Arrowdown from '../../assets/icons/arrowdown.svg';
+import Add from '../../assets/imgs/add.png';
 
 export default function Board() {
   const dispatch = useDispatch();
@@ -29,6 +31,7 @@ export default function Board() {
   const loading = useSelector((state) => state.Board.loading);
 
   const [showDropdown, setShowDropdown] = useState(false);
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     dispatch(searchRequest());
@@ -85,6 +88,10 @@ export default function Board() {
             {board?.columns?.map((list, index) => (
               <List key={list.id} data={list} listIndex={index} />
             ))}
+            <ButtonAdd onClick={() => setShowForm(!showForm)}>
+              <img src={Add} alt="icon add" />
+              COLUNA
+            </ButtonAdd>
           </BoardColumns>
         </>
       )}

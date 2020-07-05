@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { MdClose } from 'react-icons/md';
+import { MdClose, MdDeleteSweep } from 'react-icons/md';
 
 import Card from '../Card';
 import { addCardRequest } from '../../store/modules/Board/actions';
@@ -13,7 +13,11 @@ export default function List({ data, listIndex }) {
   const dispatch = useDispatch();
 
   const [cardTitle, setCardTitle] = useState('');
+  const [columnTitle, setColumnTitle] = useState(
+    data?.title ? data?.title : ''
+  );
   const [showForm, setShowForm] = useState(false);
+  const [showEditForm, setShowEditForm] = useState(false);
 
   function addToList(value, event) {
     event.preventDefault();
@@ -31,12 +35,35 @@ export default function List({ data, listIndex }) {
 
   return (
     <Container>
-      <header>
-        <h2>{data?.title}</h2>
-        <button type="button">
-          <img src={Options} alt="icon options" />
-        </button>
-      </header>
+      {!showEditForm ? (
+        <header>
+          <h2>{data?.title}</h2>
+
+          <button type="button" onClick={() => setShowEditForm(!showEditForm)}>
+            <img src={Options} alt="icon options" />
+          </button>
+        </header>
+      ) : (
+        <header>
+          <input
+            type="text"
+            value={columnTitle}
+            onChange={(e) => setColumnTitle(e.target.value)}
+            autoFocus
+          />
+
+          <div>
+            <MdDeleteSweep size={25} style={{ cursor: 'pointer' }} />
+            <button type="button">
+              <img
+                src={Options}
+                alt="icon options"
+                onClick={() => setShowEditForm(!showEditForm)}
+              />
+            </button>
+          </div>
+        </header>
+      )}
 
       <ul>
         {data?.cards?.map((card, index) => (

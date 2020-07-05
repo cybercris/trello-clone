@@ -35,7 +35,7 @@ export const Search = styled.div`
     padding: 6px 12px 8px;
     border: 1px solid #dadde2;
     border-radius: 3px;
-    color: #707070;
+    color: #000;
     width: 40%;
     margin-right: 10px;
     font-size: 16px;
@@ -136,4 +136,22 @@ export const RightSection = styled.div`
 
 export const BoardColumns = styled.div`
   display: flex;
+`;
+
+export const ButtonAdd = styled.button`
+  margin-left: 10px;
+  width: 344px;
+  height: 52px;
+  border: 2px dashed #b8b8b8;
+  padding: 14px 10px;
+  background: transparent;
+  color: #979797;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  img {
+    margin-right: 4px;
+  }
 `;

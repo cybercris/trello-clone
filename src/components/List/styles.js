@@ -19,6 +19,11 @@ export const Container = styled.div`
     padding: 0 14px;
     background: #e4e6eb;
 
+    div {
+      display: flex;
+      align-items: center;
+    }
+
     h2 {
       color: #707070;
       font-weight: 400;
@@ -26,14 +31,24 @@ export const Container = styled.div`
     }
 
     button {
-      height: 16px;
+      height: 18px;
+      width: 18px;
       border: 0;
       cursor: pointer;
       background: #e4e6eb;
 
       img {
-        height: 16px;
+        height: inherit;
+        width: inherit;
       }
+    }
+
+    input {
+      height: 19px;
+      border: 0;
+      background: transparent;
+      font-size: 16px;
+      font-family: 'Roboto', sans-serif;
     }
   }
 
