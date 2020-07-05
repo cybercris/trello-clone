@@ -3,6 +3,7 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import { ToastContainer } from 'react-toastify';
 
 import './config/ReactotronConfig';
 
@@ -19,6 +20,7 @@ function App() {
         <DndProvider backend={HTML5Backend}>
           <Board />
           <GlobalStyle />
+          <ToastContainer />
         </DndProvider>
       </PersistGate>
     </Provider>

@@ -25,30 +25,30 @@ export function addCardSuccess(list) {
   };
 }
 
-export function editCardRequest(data) {
+export function editCardRequest(card, listIndex) {
   return {
     type: '@trelloClone/EDIT_CARD_REQUEST',
-    payload: { data },
+    payload: { card, listIndex },
   };
 }
 
-export function editCardSuccess(card) {
+export function editCardSuccess(list) {
   return {
     type: '@trelloClone/EDIT_CARD_SUCCESS',
-    payload: { card },
+    payload: { list },
   };
 }
 
-export function deleteCardRequest(id) {
+export function deleteCardRequest(id, listIndex) {
   return {
-    type: '@trelloClone/EDIT_CARD_SUCCESS',
-    payload: { id },
+    type: '@trelloClone/DELETE_CARD_REQUEST',
+    payload: { id, listIndex },
   };
 }
 
 export function deleteCardSuccess(list) {
   return {
-    type: '@trelloClone/EDIT_CARD_SUCCESS',
+    type: '@trelloClone/DELETE_CARD_SUCCESS',
     payload: { list },
   };
 }

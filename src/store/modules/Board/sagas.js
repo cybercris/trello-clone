@@ -1,11 +1,11 @@
 import { takeLatest, call, put, all, select } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
+import produce from 'immer';
 import { getMaxCardId } from '../../../utils/getMaxCardId';
 
 import api from '../../../services/api';
 
-import { searchSuccess } from './actions';
-import { addCardSuccess } from './actions';
+import { searchSuccess, addCardSuccess, deleteCardSuccess } from './actions';
 
 export function* getBoard() {
   try {
@@ -42,48 +42,64 @@ export function* addCard({ payload }) {
     const { card: title, listIndex } = payload;
 
     const board = yield select((state) => state.Board.board);
-    // const board = { ...board };
-    const columns = board.columns;
-    const id = getMaxCardId(columns) + 1;
-    const cards = [...columns[listIndex].cards];
-    console.log('antes do push', cards);
 
-    cards.push({
-      id,
-      title,
-      tags: [],
+    const boardToUpdate = produce(board, (draft) => {
+      const columns = board.columns;
+      const id = getMaxCardId(columns) + 1;
+
+      draft.columns[listIndex].cards.push({
+        id,
+        title,
+        tags: [],
+      });
     });
 
-    console.log('depois: ', cards);
+    const cards = boardToUpdate.columns[listIndex].cards;
 
-    board.columns[listIndex].cards = cards;
-
-    console.log('depois +: ', cards);
-
-    yield call(api.put, 'boards/1', board);
+    yield call(api.put, 'boards/1', boardToUpdate);
     yield put(addCardSuccess(cards));
   } catch (err) {
     toast.error('Um erro aconteceu: ', err);
   }
 }
 
-// export function* editCard() {
-//   try {
-//   } catch (err) {
-//     toast.error('Um erro aconteceu: ', err);
-//   }
-// }
+export function* editCard({ payload }) {
+  try {
+    const { card: cardToUpdate, listIndex } = payload;
+
+    const board = yield select((state) => state.Board.board);
+
+    const boardToUpdate = produce(board, (draft) => {
+      let column = draft.columns[listIndex];
+      column.cards = column.cards.map((card) =>
+        card.id === cardToUpdate.id ? cardToUpdate : card
+      );
+    });
+
+    const cards = boardToUpdate.columns[listIndex].cards;
+
+    yield put(addCardSuccess(cards));
+  } catch (err) {
+    toast.error('Um erro aconteceu: ', err);
+  }
+}
 
 export function* deleteCard({ payload }) {
   try {
-    const { id } = payload;
+    const { id, listIndex } = payload;
+    console.log(id);
     const board = yield select((state) => state.Board.board);
 
-    board.columns.forEach((column) => {
-      column.cards = column.cards.filter((card) => card.id !== id);
+    const boardToUpdate = produce(board, (draft) => {
+      draft.columns.forEach((column) => {
+        column.cards = column.cards.filter((card) => card.id !== id);
+      });
     });
 
-    console.log(board);
+    const { cards } = boardToUpdate.columns[listIndex];
+
+    yield call(api.put, 'boards/1', boardToUpdate);
+    yield put(deleteCardSuccess(cards));
   } catch (err) {}
 }
 
@@ -92,4 +108,6 @@ export default all([
   takeLatest('@trelloClone/SEARCH_REQUEST', getTags),
   takeLatest('@trelloClone/SEARCH_REQUEST', getPeople),
   takeLatest('@trelloClone/ADD_CARD_REQUEST', addCard),
+  takeLatest('@trelloClone/EDIT_CARD_REQUEST', editCard),
+  takeLatest('@trelloClone/DELETE_CARD_REQUEST', deleteCard),
 ]);

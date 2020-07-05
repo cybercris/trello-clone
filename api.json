@@ -11,7 +11,14 @@
             {
               "id": 2,
               "title": "Agendar as entrevistas",
-              "tags": ["RH"]
+              "tags": [
+                "RH"
+              ]
+            },
+            {
+              "id": 4,
+              "title": "b",
+              "tags": []
             }
           ]
         },
@@ -20,21 +27,16 @@
           "title": "Em andamento",
           "cards": [
             {
-              "id": 1,
-              "title": "Elaborar o desafio técnico",
-              "tags": ["Back-End", "Front-End"],
-              "members": [
-                {
-                  "id": 1,
-                  "name": "Alex Pessoa",
-                  "photoURL": null
-                },
-                {
-                  "id": 2,
-                  "name": "Marcos Martins",
-                  "photoURL": null
-                }
+              "id": 2,
+              "title": "Agendar as entrevistas",
+              "tags": [
+                "RH"
               ]
+            },
+            {
+              "id": 4,
+              "title": "b",
+              "tags": []
             }
           ]
         },
@@ -68,5 +70,10 @@
       "photoURL": null
     }
   ],
-  "tags": ["Design", "Front-End", "Back-End", "RH"]
+  "tags": [
+    "Design",
+    "Front-End",
+    "Back-End",
+    "RH"
+  ]
 }

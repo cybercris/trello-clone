@@ -49,7 +49,9 @@ export const Container = styled.div`
       cursor: grabbing;
 
       p,
-      footer {
+      footer,
+      img,
+      svg {
         opacity: 0;
       }
     `}

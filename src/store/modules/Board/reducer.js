@@ -35,10 +35,8 @@ export default function auth(state = INITIAL_STATE, action) {
       case '@trelloClone/EDIT_CARD_SUCCESS': {
         break;
       }
-      case '@trelloClone/DELETE_CARD_REQUEST': {
-        break;
-      }
       case '@trelloClone/DELETE_CARD_SUCCESS': {
+        draft.board.columns[draft.listIndex].cards = action.payload.list;
         break;
       }
       default:

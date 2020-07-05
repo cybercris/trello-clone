@@ -1,10 +1,15 @@
 import React, { useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useDrag, useDrop } from 'react-dnd';
 import { MdEdit, MdClose, MdDeleteForever } from 'react-icons/md';
 
+import { deleteCardRequest } from '../../store/modules/Board/actions';
+
 import { Container, Info, Actions } from './styles';
 
-export default function Card({ data, index }) {
+export default function Card({ data, index, listIndex }) {
+  const dispatch = useDispatch();
+
   const [showForm, setShowForm] = useState(false);
   const [cardTitle, setCardTitle] = useState(data?.title ? data?.title : '');
   const ref = useRef();
@@ -84,7 +89,13 @@ export default function Card({ data, index }) {
               />
               <div>
                 <button>
-                  <MdDeleteForever size={20} color="#ff0000" />
+                  <MdDeleteForever
+                    size={20}
+                    color="#ff0000"
+                    onClick={() =>
+                      dispatch(deleteCardRequest(data.id, listIndex))
+                    }
+                  />
                 </button>
                 <button onClick={() => setShowForm(!showForm)}>
                   <MdEdit size={20} color="#707070" />

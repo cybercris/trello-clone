@@ -40,7 +40,7 @@ export default function List({ data, listIndex }) {
 
       <ul>
         {data?.cards?.map((card, index) => (
-          <Card key={card.id} data={card} index={index} />
+          <Card key={card.id} data={card} index={index} listIndex={listIndex} />
         ))}
         {!showForm ? (
           <ButtonAdd onClick={() => setShowForm(!showForm)}>
