@@ -10,6 +10,7 @@ import List from '../List';
 import {
   searchRequest,
   updateListRequest,
+  addColumnRequest,
 } from '../../store/modules/Board/actions';
 
 import {
@@ -39,6 +40,7 @@ export default function Board() {
 
   const [showDropdown, setShowDropdown] = useState(false);
   const [showForm, setShowForm] = useState(false);
+  const [colTitle, setColTitle] = useState('');
   const lists = board.columns;
 
   useEffect(() => {
@@ -58,8 +60,13 @@ export default function Board() {
     );
   }
 
-  function addColumn(e) {
+  function addColumn(e, title) {
     e.preventDefault();
+
+    if (colTitle !== '') {
+      dispatch(addColumnRequest(title));
+      setShowForm(!showForm);
+    }
   }
 
   return (
@@ -120,8 +127,13 @@ export default function Board() {
                   COLUNA
                 </ButtonAdd>
               ) : (
-                <FormCol onSubmit={(e) => addColumn(e)}>
-                  <input type="text" autoFocus />
+                <FormCol onSubmit={(e) => addColumn(e, colTitle)}>
+                  <input
+                    type="text"
+                    autoFocus
+                    value={colTitle}
+                    onChange={(e) => setColTitle(e.target.value)}
+                  />
                   <MdCancel size={26} onClick={() => setShowForm(!showForm)} />
                 </FormCol>
               )}

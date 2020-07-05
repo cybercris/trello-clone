@@ -67,10 +67,10 @@ export function updateListSuccess(board) {
   };
 }
 
-export function addColumnRequest(column, index) {
+export function addColumnRequest(title) {
   return {
     type: '@trelloClone/ADD_COLUMN_REQUEST',
-    payload: { column, index },
+    payload: { title },
   };
 }
 
@@ -81,30 +81,30 @@ export function addColumnSuccess(board) {
   };
 }
 
-export function editColumnRequest(column, index) {
+export function editColumnRequest(title, index) {
   return {
-    type: '@trelloClone/EDIT_CARD_REQUEST',
-    payload: { column, index },
+    type: '@trelloClone/EDIT_COLUMN_REQUEST',
+    payload: { title, index },
   };
 }
 
 export function editColumnSuccess(board) {
   return {
-    type: '@trelloClone/EDIT_CARD_SUCCESS',
+    type: '@trelloClone/EDIT_COLUMN_SUCCESS',
     payload: { board },
   };
 }
 
-export function deleteColumnRequest(id, index) {
+export function deleteColumnRequest(id) {
   return {
-    type: '@trelloClone/DELETE_CARD_REQUEST',
-    payload: { id, index },
+    type: '@trelloClone/DELETE_COLUMN_REQUEST',
+    payload: { id },
   };
 }
 
 export function deleteColumnSuccess(board) {
   return {
-    type: '@trelloClone/DELETE_CARD_SUCCESS',
+    type: '@trelloClone/DELETE_COLUMN_SUCCESS',
     payload: { board },
   };
 }

@@ -4,6 +4,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px 30px;
+  width: 100vw;
 
   ${(props) =>
     props.isLoading &&
@@ -139,24 +140,22 @@ export const BoardColumns = styled.div`
 `;
 
 export const FormCol = styled.form`
-  form {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    margin-left: 10px;
-    width: 344px;
-    height: 52px;
-    padding: 0 14px;
-    background: #e4e6eb;
+  margin-left: 10px;
+  width: 344px;
+  height: 52px;
+  padding: 0 14px;
+  background: #e4e6eb;
 
-    input {
-      border: 0;
-      font-size: 16px;
-      background: transparent;
-      color: #707070;
-      font-family: 'Roboto', sans-serif;
-    }
+  input {
+    border: 0;
+    font-size: 16px;
+    background: transparent;
+    color: #707070;
+    font-family: 'Roboto', sans-serif;
   }
 `;
 

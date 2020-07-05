@@ -10,6 +10,8 @@ import {
   addCardSuccess,
   deleteCardSuccess,
   updateListSuccess,
+  addColumnSuccess,
+  editColumnSuccess,
 } from './actions';
 
 export function* getBoard() {
@@ -123,6 +125,23 @@ export function* updateLists({ payload }) {
 
 export function* addColumn({ payload }) {
   try {
+    const { title } = payload;
+
+    const board = yield select((state) => state.Board.board);
+
+    const boardToUpdate = produce(board, (draft) => {
+      const columns = board.columns;
+      const id = getMaxCardId(columns) + 1;
+
+      draft.columns.push({
+        id,
+        title,
+        cards: [],
+      });
+    });
+
+    yield call(api.put, 'boards/1', boardToUpdate);
+    yield put(addColumnSuccess(boardToUpdate));
   } catch (err) {
     toast.error(err);
   }
@@ -130,6 +149,22 @@ export function* addColumn({ payload }) {
 
 export function* editColumn({ payload }) {
   try {
+    const { title, index } = payload;
+    const board = yield select((state) => state.Board.board);
+    console.log(title, index);
+
+    const boardToUpdate = produce(board, (draft) => {
+      let column = draft.columns[index];
+
+      draft.columns[index] = {
+        id: column.id,
+        title,
+        cards: column.cards,
+      };
+    });
+
+    yield call(api.put, 'boards/1', boardToUpdate);
+    yield put(editColumnSuccess(boardToUpdate));
   } catch (err) {
     toast.error(err);
   }
@@ -137,6 +172,15 @@ export function* editColumn({ payload }) {
 
 export function* deleteColumn({ payload }) {
   try {
+    const { id } = payload;
+    const board = yield select((state) => state.Board.board);
+
+    const boardToUpdate = produce(board, (draft) => {
+      draft.columns = draft.columns.filter((column) => column.id !== id);
+    });
+
+    yield call(api.put, 'boards/1', boardToUpdate);
+    yield put(deleteCardSuccess(boardToUpdate));
   } catch (err) {
     toast.error(err);
   }

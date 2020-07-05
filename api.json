@@ -6,34 +6,14 @@
       "columns": [
         {
           "id": 1,
-          "title": "Coisas para fazer",
+          "title": "Coisas pra fazer",
           "cards": [
-            {
-              "id": 4,
-              "title": "testandoooooo",
-              "tags": []
-            },
             {
               "id": 2,
               "title": "Agendar as entrevistas",
               "tags": [
                 "RH"
               ]
-            },
-            {
-              "id": 10,
-              "title": "testandooo",
-              "tags": []
-            },
-            {
-              "id": 3,
-              "title": "removeags",
-              "tags": []
-            },
-            {
-              "id": 12,
-              "title": "teste",
-              "tags": []
             }
           ]
         },
@@ -42,34 +22,8 @@
           "title": "Em andamento",
           "cards": [
             {
-              "id": 9,
-              "title": "teste",
-              "tags": []
-            },
-            {
-              "id": 11,
-              "title": "tete",
-              "tags": []
-            }
-          ]
-        },
-        {
-          "id": 3,
-          "title": "Concluído",
-          "cards": [
-            {
-              "id": 8,
-              "title": "update man",
-              "tags": []
-            },
-            {
-              "id": 6,
-              "title": "teste",
-              "tags": []
-            },
-            {
-              "id": 7,
-              "title": "teste",
+              "id": 4,
+              "title": "testando",
               "tags": []
             }
           ]

@@ -3,7 +3,11 @@ import { useDispatch } from 'react-redux';
 import { MdClose, MdDeleteSweep } from 'react-icons/md';
 
 import Card from '../Card';
-import { addCardRequest } from '../../store/modules/Board/actions';
+import {
+  addCardRequest,
+  editColumnRequest,
+  deleteColumnRequest,
+} from '../../store/modules/Board/actions';
 
 import { Container, ButtonAdd, FormAdd, Actions } from './styles';
 import Options from '../../assets/icons/options.svg';
@@ -33,6 +37,17 @@ export default function List({ data, listIndex }) {
     setCardTitle('');
   }
 
+  function editCol(e, title) {
+    e.preventDefault();
+
+    console.log(title);
+
+    if (columnTitle !== '') {
+      dispatch(editColumnRequest(title, listIndex));
+      setShowEditForm(!showEditForm);
+    }
+  }
+
   return (
     <Container>
       {!showEditForm ? (
@@ -45,15 +60,21 @@ export default function List({ data, listIndex }) {
         </header>
       ) : (
         <header>
-          <input
-            type="text"
-            value={columnTitle}
-            onChange={(e) => setColumnTitle(e.target.value)}
-            autoFocus
-          />
+          <form onSubmit={(e) => editCol(e, columnTitle)}>
+            <input
+              type="text"
+              value={columnTitle}
+              onChange={(e) => setColumnTitle(e.target.value)}
+              autoFocus
+            />
+          </form>
 
           <div>
-            <MdDeleteSweep size={25} style={{ cursor: 'pointer' }} />
+            <MdDeleteSweep
+              size={25}
+              style={{ cursor: 'pointer' }}
+              onClick={() => dispatch(deleteColumnRequest(data.id))}
+            />
             <button type="button">
               <img
                 src={Options}
