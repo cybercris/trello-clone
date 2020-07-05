@@ -9,11 +9,9 @@
           "title": "Coisas pra fazer",
           "cards": [
             {
-              "id": 2,
-              "title": "Agendar as entrevistas",
-              "tags": [
-                "RH"
-              ]
+              "id": 5,
+              "title": "Fazer teste técnico",
+              "tags": []
             }
           ]
         },
@@ -22,11 +20,34 @@
           "title": "Em andamento",
           "cards": [
             {
+              "id": 2,
+              "title": "Agendar as entrevistas",
+              "tags": [
+                "RH"
+              ]
+            },
+            {
               "id": 4,
               "title": "testando",
               "tags": []
             }
           ]
+        },
+        {
+          "id": 6,
+          "title": "Concluído",
+          "cards": [
+            {
+              "id": 6,
+              "title": "algumas partes",
+              "tags": []
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "title": "newColumn",
+          "cards": []
         }
       ]
     }

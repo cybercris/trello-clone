@@ -11,6 +11,7 @@ import {
   searchRequest,
   updateListRequest,
   addColumnRequest,
+  updateColRequest,
 } from '../../store/modules/Board/actions';
 
 import {
@@ -55,6 +56,18 @@ export default function Board() {
 
           draft[fromList].cards.splice(from, 1);
           draft[toList].cards.splice(to, 0, dragged);
+        })
+      )
+    );
+  }
+
+  function moveCol(fromCol, toCol, index) {
+    dispatch(
+      updateListRequest(
+        produce(lists, (draft) => {
+          // const dragged = draft[fromList];
+          // draft[fromList].splice(from, 1);
+          // draft[toList].splice(to, 0, dragged);
         })
       )
     );

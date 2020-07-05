@@ -8,7 +8,6 @@ import BoardContext from '../Board/context';
 import {
   deleteCardRequest,
   editCardRequest,
-  moveCard,
 } from '../../store/modules/Board/actions';
 
 import { Container, Info, Actions } from './styles';

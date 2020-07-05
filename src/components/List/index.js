@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { MdClose, MdDeleteSweep } from 'react-icons/md';
+import { useDrag, useDrop } from 'react-dnd';
 
 import Card from '../Card';
 import {
@@ -15,6 +16,7 @@ import Add from '../../assets/imgs/add.png';
 
 export default function List({ data, listIndex }) {
   const dispatch = useDispatch();
+  const ref = useRef();
 
   const [cardTitle, setCardTitle] = useState('');
   const [columnTitle, setColumnTitle] = useState(
@@ -22,6 +24,47 @@ export default function List({ data, listIndex }) {
   );
   const [showForm, setShowForm] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
+
+  const [{ isDragging }, dragRef] = useDrag({
+    item: { type: 'LIST', listIndex },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  });
+
+  const [, dropRef] = useDrop({
+    accept: 'LIST',
+    hover(item, monitor) {
+      const draggedIndex = item.listIndex;
+      const targetIndex = listIndex;
+
+      if (draggedIndex === targetIndex) {
+        return;
+      }
+
+      const targetSize = ref.current.getBoundingClientRect();
+      const targetCenter = (targetSize.bottom - targetSize.top) / 2;
+
+      const draggedOffset = monitor.getClientOffset();
+      const draggedTop = draggedOffset.y - targetSize.top;
+
+      if (draggedIndex < targetIndex && draggedTop < targetCenter) {
+        return;
+      }
+
+      if (draggedIndex > targetIndex && draggedTop > targetCenter) {
+        return;
+      }
+
+      // move(draggedListIndex, targetListIndex, draggedIndex, targetIndex);
+      item.listIndex = targetIndex;
+      // item.listIndex = targetListIndex;
+
+      // dispatch(moveCard(draggedListIndex, draggedIndex, targetIndex));
+    },
+  });
+
+  dragRef(dropRef(ref));
 
   function addToList(value, event) {
     event.preventDefault();
@@ -49,7 +92,7 @@ export default function List({ data, listIndex }) {
   }
 
   return (
-    <Container>
+    <Container ref={ref} isDragging={isDragging}>
       {!showEditForm ? (
         <header>
           <h2>{data?.title}</h2>

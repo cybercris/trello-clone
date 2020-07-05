@@ -1,10 +1,24 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { lighten, darken } from 'polished';
 
 export const Container = styled.div`
   flex: 0 0 344px;
   background: #f4f5f7;
   height: 100%;
+
+  ${(props) =>
+    props.isDragging &&
+    css`
+      border: 2px dashed rgba(0, 0, 0, 0.2);
+      border-radius: 0;
+      box-shadow: none;
+      cursor: grabbing;
+
+      header,
+      ul {
+        opacity: 0;
+      }
+    `}
 
   & + div {
     margin-left: 10px;

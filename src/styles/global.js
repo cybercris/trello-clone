@@ -12,6 +12,7 @@ export default createGlobalStyle`
 
   html, body, #root{
     height: 100%;
+    min-width: 100%;
   }
 
   body {
