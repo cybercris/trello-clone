@@ -38,3 +38,17 @@ export function editCardSuccess(card) {
     payload: { card },
   };
 }
+
+export function deleteCardRequest(id) {
+  return {
+    type: '@trelloClone/EDIT_CARD_SUCCESS',
+    payload: { id },
+  };
+}
+
+export function deleteCardSuccess(list) {
+  return {
+    type: '@trelloClone/EDIT_CARD_SUCCESS',
+    payload: { list },
+  };
+}

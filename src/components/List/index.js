@@ -13,19 +13,19 @@ export default function List({ data, listIndex }) {
   const dispatch = useDispatch();
 
   const [cardTitle, setCardTitle] = useState('');
-  const [showForm, setShowform] = useState(false);
+  const [showForm, setShowForm] = useState(false);
 
   function addToList(value, event) {
     event.preventDefault();
 
     if (value !== '') {
       dispatch(addCardRequest(value, listIndex));
-      setShowform(!showForm);
+      setShowForm(!showForm);
     }
   }
 
   function cancelAdd() {
-    setShowform(!showForm);
+    setShowForm(!showForm);
     setCardTitle('');
   }
 
@@ -43,7 +43,7 @@ export default function List({ data, listIndex }) {
           <Card key={card.id} data={card} index={index} />
         ))}
         {!showForm ? (
-          <ButtonAdd onClick={() => setShowform(!showForm)}>
+          <ButtonAdd onClick={() => setShowForm(!showForm)}>
             <img src={Add} alt="icon add" />
             TASK
           </ButtonAdd>

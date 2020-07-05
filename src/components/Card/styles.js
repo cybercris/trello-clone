@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { lighten, darken } from 'polished';
 
 export const Container = styled.div`
   padding: 14px 12px;
@@ -12,6 +13,7 @@ export const Container = styled.div`
   div {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     button {
       border: 0;
@@ -21,6 +23,12 @@ export const Container = styled.div`
       svg {
         visibility: hidden;
       }
+    }
+
+    input {
+      border: 0;
+      width: 100%;
+      font: 14px 'Roboto', sans-serif;
     }
   }
 
@@ -46,37 +54,103 @@ export const Container = styled.div`
       }
     `}
 
+  & + div {
+    margin-top: 14px;
+  }
+
   footer {
     display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
 
-    margin-top: 12px;
+    button {
+      cursor: pointer;
+    }
 
-    div {
-      display: flex;
+    button[type='submit'] {
+      padding: 10px;
+      background: #5aac44;
+      border: 0;
+      border-radius: 3px;
+      color: #fff;
+      font-size: 14px;
+      margin-right: 10px;
 
-      p {
-        background: #0000000a;
-        color: #818181;
-        padding: 4px 8px;
-        font-size: 12px;
-        border-radius: 3px;
+      &:hover {
+        background: ${lighten(0.1, '#5aac44')};
+      }
 
-        & + p {
-          margin-left: 8px;
-        }
+      &:active {
+        background: ${darken(0.1, '#5aac44')};
       }
     }
 
-    img {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
+    button[type='button'] {
+      border: 0;
+      background: transparent;
+    }
+  }
+`;
+
+export const Info = styled.div`
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  margin-top: 12px;
+
+  div {
+    display: flex;
+
+    p {
+      background: #0000000a;
+      color: #818181;
+      padding: 4px 8px;
+      font-size: 12px;
+      border-radius: 3px;
+
+      & + p {
+        margin-left: 8px;
+      }
     }
   }
 
-  & + div {
-    margin-top: 14px;
+  img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+  }
+`;
+
+export const Actions = styled.footer`
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+
+  button {
+    cursor: pointer;
+  }
+
+  button[type='submit'] {
+    padding: 10px;
+    background: #5aac44;
+    border: 0;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 14px;
+    margin-right: 10px;
+
+    &:hover {
+      background: ${lighten(0.1, '#5aac44')};
+    }
+
+    &:active {
+      background: ${darken(0.1, '#5aac44')};
+    }
+  }
+
+  button[type='button'] {
+    border: 0;
+    background: transparent;
   }
 `;

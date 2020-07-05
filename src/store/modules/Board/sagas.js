@@ -42,8 +42,8 @@ export function* addCard({ payload }) {
     const { card: title, listIndex } = payload;
 
     const board = yield select((state) => state.Board.board);
-    const newBoard = { ...board };
-    const columns = newBoard.columns;
+    // const board = { ...board };
+    const columns = board.columns;
     const id = getMaxCardId(columns) + 1;
     const cards = [...columns[listIndex].cards];
     console.log('antes do push', cards);
@@ -56,11 +56,11 @@ export function* addCard({ payload }) {
 
     console.log('depois: ', cards);
 
-    newBoard.columns[listIndex].cards = cards;
+    board.columns[listIndex].cards = cards;
 
     console.log('depois +: ', cards);
 
-    yield call(api.put, 'boards/1', newBoard);
+    yield call(api.put, 'boards/1', board);
     yield put(addCardSuccess(cards));
   } catch (err) {
     toast.error('Um erro aconteceu: ', err);
@@ -73,6 +73,19 @@ export function* addCard({ payload }) {
 //     toast.error('Um erro aconteceu: ', err);
 //   }
 // }
+
+export function* deleteCard({ payload }) {
+  try {
+    const { id } = payload;
+    const board = yield select((state) => state.Board.board);
+
+    board.columns.forEach((column) => {
+      column.cards = column.cards.filter((card) => card.id !== id);
+    });
+
+    console.log(board);
+  } catch (err) {}
+}
 
 export default all([
   takeLatest('@trelloClone/SEARCH_REQUEST', getBoard),

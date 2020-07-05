@@ -4,7 +4,7 @@ const INITIAL_STATE = {
   board: [],
   people: [],
   tags: [],
-  card: null,
+  // card: null,
   listIndex: 0,
   loading: false,
 };
@@ -33,6 +33,12 @@ export default function auth(state = INITIAL_STATE, action) {
         break;
       }
       case '@trelloClone/EDIT_CARD_SUCCESS': {
+        break;
+      }
+      case '@trelloClone/DELETE_CARD_REQUEST': {
+        break;
+      }
+      case '@trelloClone/DELETE_CARD_SUCCESS': {
         break;
       }
       default:
