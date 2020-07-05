@@ -52,3 +52,30 @@ export function deleteCardSuccess(board) {
     payload: { board },
   };
 }
+
+export function updateListRequest(lists) {
+  return {
+    type: '@trelloClone/UPDATE_LIST_REQUEST',
+    payload: { lists },
+  };
+}
+
+export function updateListSuccess(board) {
+  return {
+    type: '@trelloClone/UPDATE_LIST_SUCCESS',
+    payload: { board },
+  };
+}
+// export function moveCard(fromList, from, to) {
+//   return {
+//     type: '@trelloClone/MOVE_CARD',
+//     payload: { fromList, from, to },
+//   };
+// }
+
+// export function moveCardSuccess(board) {
+//   return {
+//     type: '@trelloClone/MOVE_CARD',
+//     payload: { board },
+//   };
+// }

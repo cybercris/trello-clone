@@ -2,9 +2,14 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PulseLoader from 'react-spinners/PulseLoader';
+import produce from 'immer';
 
+import BoardContext from './context';
 import List from '../List';
-import { searchRequest } from '../../store/modules/Board/actions';
+import {
+  searchRequest,
+  updateListRequest,
+} from '../../store/modules/Board/actions';
 
 import {
   Container,
@@ -32,69 +37,85 @@ export default function Board() {
 
   const [showDropdown, setShowDropdown] = useState(false);
   const [showForm, setShowForm] = useState(false);
+  const lists = board.columns;
 
   useEffect(() => {
     dispatch(searchRequest());
   }, []);
 
-  return (
-    <Container isLoading={loading}>
-      {loading ? (
-        <PulseLoader size={30} color="#707070" />
-      ) : (
-        <>
-          <BoardHeader>
-            <h1>{board?.title}</h1>
-            <Search>
-              <input type="text" placeholder="Pesquisar" name="" id="" />
-              <Button onClick={() => setShowDropdown(!showDropdown)}>
-                FILTRO AVANÇADO
-                <img
-                  src={Arrowdown}
-                  className={showDropdown ? 'rotate' : undefined}
-                  alt="icon arrow"
-                />
-              </Button>
-            </Search>
-            {showDropdown && (
-              <Dropdown>
-                <LeftSection>
-                  {people?.map((person) => {
-                    const spltName = person.name.toUpperCase().split(' ');
+  function move(fromList, toList, from, to) {
+    dispatch(
+      updateListRequest(
+        produce(lists, (draft) => {
+          const dragged = draft[fromList].cards[from];
 
-                    return (
-                      <Person key={person.id}>
-                        {person.photoURL ? (
-                          <img src={person.photoURL} alt="person avatar" />
-                        ) : (
-                          <Circle>{spltName[0][0] + spltName[1][0]}</Circle>
-                        )}
-                        <p>{person.name}</p>
-                      </Person>
-                    );
-                  })}
-                </LeftSection>
-                <RightSection>
-                  {tags?.map((tag) => (
-                    <div key={tag}>
-                      <p>{tag}</p>
-                    </div>
-                  ))}
-                </RightSection>
-              </Dropdown>
-            )}
-          </BoardHeader>
-          <BoardColumns>
-            {board?.columns?.map((list, index) => (
-              <List key={list.id} data={list} listIndex={index} />
-            ))}
-            <ButtonAdd onClick={() => setShowForm(!showForm)}>
-              <img src={Add} alt="icon add" />
-              COLUNA
-            </ButtonAdd>
-          </BoardColumns>
-        </>
-      )}
-    </Container>
+          draft[fromList].cards.splice(from, 1);
+          draft[toList].cards.splice(to, 0, dragged);
+        })
+      )
+    );
+  }
+
+  return (
+    <BoardContext.Provider value={{ lists, move }}>
+      <Container isLoading={loading}>
+        {loading ? (
+          <PulseLoader size={30} color="#707070" />
+        ) : (
+          <>
+            <BoardHeader>
+              <h1>{board?.title}</h1>
+              <Search>
+                <input type="text" placeholder="Pesquisar" name="" id="" />
+                <Button onClick={() => setShowDropdown(!showDropdown)}>
+                  FILTRO AVANÇADO
+                  <img
+                    src={Arrowdown}
+                    className={showDropdown ? 'rotate' : undefined}
+                    alt="icon arrow"
+                  />
+                </Button>
+              </Search>
+              {showDropdown && (
+                <Dropdown>
+                  <LeftSection>
+                    {people?.map((person) => {
+                      const spltName = person.name.toUpperCase().split(' ');
+
+                      return (
+                        <Person key={person.id}>
+                          {person.photoURL ? (
+                            <img src={person.photoURL} alt="person avatar" />
+                          ) : (
+                            <Circle>{spltName[0][0] + spltName[1][0]}</Circle>
+                          )}
+                          <p>{person.name}</p>
+                        </Person>
+                      );
+                    })}
+                  </LeftSection>
+                  <RightSection>
+                    {tags?.map((tag) => (
+                      <div key={tag}>
+                        <p>{tag}</p>
+                      </div>
+                    ))}
+                  </RightSection>
+                </Dropdown>
+              )}
+            </BoardHeader>
+            <BoardColumns>
+              {lists?.map((list, index) => (
+                <List key={list.id} data={list} listIndex={index} />
+              ))}
+              <ButtonAdd onClick={() => setShowForm(!showForm)}>
+                <img src={Add} alt="icon add" />
+                COLUNA
+              </ButtonAdd>
+            </BoardColumns>
+          </>
+        )}
+      </Container>
+    </BoardContext.Provider>
   );
 }

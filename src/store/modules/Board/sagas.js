@@ -5,7 +5,12 @@ import { getMaxCardId } from '../../../utils/getMaxCardId';
 
 import api from '../../../services/api';
 
-import { searchSuccess, addCardSuccess, deleteCardSuccess } from './actions';
+import {
+  searchSuccess,
+  addCardSuccess,
+  deleteCardSuccess,
+  updateListSuccess,
+} from './actions';
 
 export function* getBoard() {
   try {
@@ -95,7 +100,25 @@ export function* deleteCard({ payload }) {
 
     yield call(api.put, 'boards/1', boardToUpdate);
     yield put(deleteCardSuccess(boardToUpdate));
-  } catch (err) {}
+  } catch (err) {
+    toast.error(err);
+  }
+}
+
+export function* updateLists({ payload }) {
+  try {
+    const { lists } = payload;
+    const board = yield select((state) => state.Board.board);
+
+    const boardToUpdate = produce(board, (draft) => {
+      draft.columns = lists;
+    });
+
+    yield call(api.put, 'boards/1', boardToUpdate);
+    yield put(updateListSuccess(boardToUpdate));
+  } catch (err) {
+    toast.error(err);
+  }
 }
 
 export default all([
@@ -105,4 +128,5 @@ export default all([
   takeLatest('@trelloClone/ADD_CARD_REQUEST', addCard),
   takeLatest('@trelloClone/EDIT_CARD_REQUEST', editCard),
   takeLatest('@trelloClone/DELETE_CARD_REQUEST', deleteCard),
+  takeLatest('@trelloClone/UPDATE_LIST_REQUEST', updateLists),
 ]);
