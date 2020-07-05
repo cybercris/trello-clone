@@ -24,6 +24,7 @@ import {
   RightSection,
   BoardColumns,
   ButtonAdd,
+  FormCol,
 } from './styles';
 import Arrowdown from '../../assets/icons/arrowdown.svg';
 import Add from '../../assets/imgs/add.png';
@@ -119,10 +120,10 @@ export default function Board() {
                   COLUNA
                 </ButtonAdd>
               ) : (
-                <form onSubmit={(e) => addColumn(e)}>
+                <FormCol onSubmit={(e) => addColumn(e)}>
                   <input type="text" autoFocus />
                   <MdCancel size={26} onClick={() => setShowForm(!showForm)} />
-                </form>
+                </FormCol>
               )}
             </BoardColumns>
           </>

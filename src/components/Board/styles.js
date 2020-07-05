@@ -136,7 +136,9 @@ export const RightSection = styled.div`
 
 export const BoardColumns = styled.div`
   display: flex;
+`;
 
+export const FormCol = styled.form`
   form {
     display: flex;
     align-items: center;

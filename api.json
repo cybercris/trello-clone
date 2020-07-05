@@ -9,6 +9,11 @@
           "title": "Coisas para fazer",
           "cards": [
             {
+              "id": 4,
+              "title": "testandoooooo",
+              "tags": []
+            },
+            {
               "id": 2,
               "title": "Agendar as entrevistas",
               "tags": [
@@ -16,8 +21,8 @@
               ]
             },
             {
-              "id": 4,
-              "title": "testandoooooo",
+              "id": 10,
+              "title": "testandooo",
               "tags": []
             },
             {
@@ -28,11 +33,6 @@
             {
               "id": 12,
               "title": "teste",
-              "tags": []
-            },
-            {
-              "id": 10,
-              "title": "testandooo",
               "tags": []
             }
           ]

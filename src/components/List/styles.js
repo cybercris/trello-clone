@@ -84,6 +84,8 @@ export const ButtonAdd = styled.button`
 
 export const FormAdd = styled.form`
   div {
+    display: flex;
+    flex-direction: column;
     padding: 14px 12px;
     background: #ffffff;
     box-shadow: 0px 1px 3px #00000029;
