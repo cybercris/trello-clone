@@ -9,6 +9,27 @@ export const Container = styled.div`
   min-height: 88px;
   cursor: grab;
 
+  div {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+
+      svg {
+        visibility: hidden;
+      }
+    }
+  }
+
+  &:hover {
+    svg {
+      visibility: visible;
+    }
+  }
+
   ${(props) =>
     props.isDragging &&
     css`

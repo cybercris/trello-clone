@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { MdClose } from 'react-icons/md';
+import PerfectScrollbar from 'react-perfect-scrollbar';
 
 import Card from '../Card';
 import { addCardRequest } from '../../store/modules/Board/actions';
@@ -19,7 +20,6 @@ export default function List({ data, listIndex }) {
     event.preventDefault();
 
     if (value !== '') {
-      // console.log(value);
       dispatch(addCardRequest(value, listIndex));
       setShowform(!showForm);
     }
@@ -39,36 +39,38 @@ export default function List({ data, listIndex }) {
         </button>
       </header>
 
-      <ul>
-        {data?.cards?.map((card, index) => (
-          <Card key={card.id} data={card} index={index} />
-        ))}
-        {!showForm ? (
-          <ButtonAdd onClick={() => setShowform(!showForm)}>
-            <img src={Add} alt="icon add" />
-            TASK
-          </ButtonAdd>
-        ) : (
-          <FormAdd>
-            <div>
-              <input
-                type="text"
-                placeholder="Insira um título para este cartão..."
-                value={cardTitle}
-                onChange={(e) => setCardTitle(e.target.value)}
-              />
-            </div>
-            <Actions>
-              <button type="submit" onClick={(e) => addToList(cardTitle, e)}>
-                Adicionar Cartão
-              </button>
-              <button type="button" onClick={() => cancelAdd()}>
-                <MdClose size={32} color="#979797" />
-              </button>
-            </Actions>
-          </FormAdd>
-        )}
-      </ul>
+      <PerfectScrollbar>
+        <ul>
+          {data?.cards?.map((card, index) => (
+            <Card key={card.id} data={card} index={index} />
+          ))}
+          {!showForm ? (
+            <ButtonAdd onClick={() => setShowform(!showForm)}>
+              <img src={Add} alt="icon add" />
+              TASK
+            </ButtonAdd>
+          ) : (
+            <FormAdd>
+              <div>
+                <input
+                  type="text"
+                  placeholder="Insira um título para este cartão..."
+                  value={cardTitle}
+                  onChange={(e) => setCardTitle(e.target.value)}
+                />
+              </div>
+              <Actions>
+                <button type="submit" onClick={(e) => addToList(cardTitle, e)}>
+                  Adicionar Cartão
+                </button>
+                <button type="button" onClick={() => cancelAdd()}>
+                  <MdClose size={32} color="#979797" />
+                </button>
+              </Actions>
+            </FormAdd>
+          )}
+        </ul>
+      </PerfectScrollbar>
     </Container>
   );
 }

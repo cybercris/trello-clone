@@ -1,5 +1,6 @@
-import { takeLatest, call, put, all } from 'redux-saga/effects';
+import { takeLatest, call, put, all, select } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
+import { getMaxCardId } from '../../../utils/getMaxCardId';
 
 import api from '../../../services/api';
 
@@ -10,7 +11,7 @@ export function* getBoard() {
   try {
     const board = yield call(api.get, 'boards');
 
-    yield put(searchSuccess('board', board.data));
+    yield put(searchSuccess('board/1', board.data));
   } catch (err) {
     toast.error('Um erro aconteceu: ', err);
   }
@@ -38,23 +39,31 @@ export function* getPeople() {
 
 export function* addCard({ payload }) {
   try {
-    const { card, listIndex } = payload;
+    const { card: title, listIndex } = payload;
 
-    const board = yield call(api.get, 'boards');
-    const { cards } = board.data[0].columns[listIndex];
-    const lastCard = cards.slice(-1);
+    const board = yield select((state) => state.Board.board);
+    const id = getMaxCardId(board.data[0].columns) + 1;
+    const cards = board.data[0].columns[listIndex].cards;
 
-    const newList = [
-      ...cards,
-      { id: lastCard[0].id ? lastCard[0].id + 1 : 0, title: card, tags: [] },
-    ];
-    board.data[0].columns[listIndex].cards = newList;
-    yield call(api.put, 'boards/1', board.data[0]);
-    yield put(addCardSuccess(newList));
+    cards.push({
+      id,
+      title,
+      tags: [],
+    });
+
+    yield call(api.put, 'boards/1', board);
+    yield put(addCardSuccess(cards));
   } catch (err) {
     toast.error('Um erro aconteceu: ', err);
   }
 }
+
+// export function* editCard() {
+//   try {
+//   } catch (err) {
+//     toast.error('Um erro aconteceu: ', err);
+//   }
+// }
 
 export default all([
   takeLatest('@trelloClone/SEARCH_REQUEST', getBoard),

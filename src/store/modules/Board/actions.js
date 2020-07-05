@@ -24,3 +24,17 @@ export function addCardSuccess(list) {
     payload: { list },
   };
 }
+
+export function editCardRequest(data) {
+  return {
+    type: '@trelloClone/EDIT_CARD_REQUEST',
+    payload: { data },
+  };
+}
+
+export function editCardSuccess(card) {
+  return {
+    type: '@trelloClone/EDIT_CARD_SUCCESS',
+    payload: { card },
+  };
+}

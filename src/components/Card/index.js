@@ -1,10 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { MdEdit } from 'react-icons/md';
 
 import { Container } from './styles';
 
 export default function Card({ data, index }) {
+  const [showForm, setShowForm] = useState(false);
   const ref = useRef();
 
   const [{ isDragging }, dragRef] = useDrag({
@@ -46,7 +47,13 @@ export default function Card({ data, index }) {
     <Container ref={ref} isDragging={isDragging}>
       <div>
         <p>{data?.title}</p>
-        <MdEdit />
+        <button>
+          <MdEdit
+            size={20}
+            color="#707070"
+            onClick={() => setShowForm(!showForm)}
+          />
+        </button>
       </div>
 
       <footer>

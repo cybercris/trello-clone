@@ -41,7 +41,7 @@ export default function Board() {
       ) : (
         <>
           <BoardHeader>
-            <h1>{board?.[0]?.title}</h1>
+            <h1>{board?.title}</h1>
             <Search>
               <input type="text" placeholder="Pesquisar" name="" id="" />
               <Button onClick={() => setShowDropdown(!showDropdown)}>
@@ -56,12 +56,20 @@ export default function Board() {
             {showDropdown && (
               <Dropdown>
                 <LeftSection>
-                  {people?.map((person) => (
-                    <Person key={person.id}>
-                      <Circle />
-                      <p>{person.name}</p>
-                    </Person>
-                  ))}
+                  {people?.map((person) => {
+                    const spltName = person.name.toUpperCase().split(' ');
+
+                    return (
+                      <Person key={person.id}>
+                        {person.photoURL ? (
+                          <img src={person.photoURL} alt="person avatar" />
+                        ) : (
+                          <Circle>{spltName[0][0] + spltName[1][0]}</Circle>
+                        )}
+                        <p>{person.name}</p>
+                      </Person>
+                    );
+                  })}
                 </LeftSection>
                 <RightSection>
                   {tags?.map((tag) => (
@@ -74,7 +82,7 @@ export default function Board() {
             )}
           </BoardHeader>
           <BoardColumns>
-            {board?.[0]?.columns?.map((list, index) => (
+            {board?.columns?.map((list, index) => (
               <List key={list.id} data={list} listIndex={index} />
             ))}
           </BoardColumns>

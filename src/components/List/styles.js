@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { lighten, darken } from 'polished';
 
 export const Container = styled.div`
-  height: 100vh;
   flex: 0 0 344px;
   background: #f4f5f7;
 

@@ -99,11 +99,17 @@ export const Person = styled.div`
 `;
 
 export const Circle = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   min-height: 30px;
   min-width: 30px;
   border-radius: 50%;
   background: #eff5fb;
   margin-right: 8px;
+  color: #2680eb;
+  font-size: 13px;
 `;
 
 export const RightSection = styled.div`
