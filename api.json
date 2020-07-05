@@ -6,12 +6,15 @@
       "columns": [
         {
           "id": 1,
-          "title": "Coisas pra fazer",
+          "title": "Coisas para fazer",
           "cards": [
             {
-              "id": 5,
-              "title": "Fazer teste técnico",
-              "tags": []
+              "id": 2,
+              "title": "Agendar as entrevistas",
+              "tags": [
+                "RH",
+                "Front-End"
+              ]
             }
           ]
         },
@@ -20,33 +23,17 @@
           "title": "Em andamento",
           "cards": [
             {
-              "id": 2,
-              "title": "Agendar as entrevistas",
+              "id": 1,
+              "title": "Elaborar o desafio técnico",
               "tags": [
-                "RH"
+                "Back-End"
               ]
-            },
-            {
-              "id": 4,
-              "title": "testando",
-              "tags": []
             }
           ]
         },
         {
-          "id": 6,
+          "id": 3,
           "title": "Concluído",
-          "cards": [
-            {
-              "id": 6,
-              "title": "algumas partes",
-              "tags": []
-            }
-          ]
-        },
-        {
-          "id": 7,
-          "title": "newColumn",
           "cards": []
         }
       ]

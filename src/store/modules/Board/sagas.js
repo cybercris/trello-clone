@@ -1,7 +1,7 @@
 import { takeLatest, call, put, all, select } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 import produce from 'immer';
-import { getMaxCardId } from '../../../utils/getMaxCardId';
+import { getMaxCardId, getMaxColId } from '../../../utils';
 
 import api from '../../../services/api';
 
@@ -131,7 +131,7 @@ export function* addColumn({ payload }) {
 
     const boardToUpdate = produce(board, (draft) => {
       const columns = board.columns;
-      const id = getMaxCardId(columns) + 1;
+      const id = getMaxColId(columns) + 1;
 
       draft.columns.push({
         id,

@@ -1,5 +1,6 @@
-import React, { useRef, useState, useContext } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useRef, useState, useContext, useMemo } from 'react';
+import Select from 'react-select';
+import { useDispatch, useSelector } from 'react-redux';
 import { useDrag, useDrop } from 'react-dnd';
 import { MdEdit, MdClose, MdDeleteForever } from 'react-icons/md';
 
@@ -17,8 +18,21 @@ export default function Card({ data, index, listIndex }) {
   const { move } = useContext(BoardContext);
   const dispatch = useDispatch();
 
+  const tags = useSelector((state) => state.Board.tags);
   const [showForm, setShowForm] = useState(false);
   const [cardTitle, setCardTitle] = useState(data?.title ? data?.title : '');
+  const options = useMemo(
+    () => tags.map((tag) => ({ value: tag, label: tag })),
+    [tags]
+  );
+  const [selectedOptions, setSelectedOptions] = useState(
+    data.tags
+      ? data.tags.map((tag) => ({
+          value: tag,
+          label: tag,
+        }))
+      : []
+  );
 
   const [{ isDragging }, dragRef] = useDrag({
     item: { type: 'CARD', index, listIndex },
@@ -60,8 +74,6 @@ export default function Card({ data, index, listIndex }) {
       move(draggedListIndex, targetListIndex, draggedIndex, targetIndex);
       item.index = targetIndex;
       item.listIndex = targetListIndex;
-
-      // dispatch(moveCard(draggedListIndex, draggedIndex, targetIndex));
     },
   });
 
@@ -78,7 +90,7 @@ export default function Card({ data, index, listIndex }) {
     const newCard = {
       id: data.id,
       title,
-      tags: data.tags,
+      tags: selectedOptions.map((option) => option.value),
     };
 
     dispatch(editCardRequest(newCard, listIndex));
@@ -102,10 +114,7 @@ export default function Card({ data, index, listIndex }) {
                 <p key={tag}>{tag}</p>
               ))}
             </div>
-            <img
-              src="https://api.adorable.io/avatars/abott@adorable.png"
-              alt=""
-            />
+            <img src={data.photoUrl ? data.photoUrl : null} alt="" />
           </Info>
         </Container>
       ) : (
@@ -136,16 +145,34 @@ export default function Card({ data, index, listIndex }) {
 
             <Info>
               <div>
-                {data?.tags?.map((tag) => (
-                  <p key={tag}>{tag}</p>
-                ))}
+                <div>
+                  {data?.tags?.map((tag) => (
+                    <p key={tag}>{tag}</p>
+                  ))}
+                </div>
               </div>
+
               <img
                 src="https://api.adorable.io/avatars/abott@adorable.png"
                 alt=""
               />
             </Info>
           </Container>
+          <Select
+            // defaultValue={data.tags.map((tag) => ({
+            //   value: tag,
+            //   label: tag,
+            // }))}
+            isMulti
+            name="tags"
+            placeholder="Selecione as tags..."
+            options={options}
+            value={selectedOptions}
+            onChange={setSelectedOptions}
+            className="basic-multi-select"
+            classNamePrefix="select"
+          />
+
           <Actions>
             <button type="submit" onClick={(e) => editCard(e, cardTitle)}>
               Salvar
