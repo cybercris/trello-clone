@@ -4,6 +4,7 @@ import { lighten, darken } from 'polished';
 export const Container = styled.div`
   flex: 0 0 344px;
   background: #f4f5f7;
+  height: 100%;
 
   & + div {
     margin-left: 10px;
@@ -38,6 +39,7 @@ export const Container = styled.div`
 
   ul {
     padding: 10px 12px;
+    height: 100%;
   }
 
   div ~ button {

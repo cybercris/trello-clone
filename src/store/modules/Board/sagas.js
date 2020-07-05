@@ -9,9 +9,9 @@ import { addCardSuccess } from './actions';
 
 export function* getBoard() {
   try {
-    const board = yield call(api.get, 'boards');
+    const board = yield call(api.get, 'boards/1');
 
-    yield put(searchSuccess('board/1', board.data));
+    yield put(searchSuccess('board', board.data));
   } catch (err) {
     toast.error('Um erro aconteceu: ', err);
   }
@@ -42,8 +42,11 @@ export function* addCard({ payload }) {
     const { card: title, listIndex } = payload;
 
     const board = yield select((state) => state.Board.board);
-    const id = getMaxCardId(board.data[0].columns) + 1;
-    const cards = board.data[0].columns[listIndex].cards;
+    const newBoard = { ...board };
+    const columns = newBoard.columns;
+    const id = getMaxCardId(columns) + 1;
+    const cards = [...columns[listIndex].cards];
+    console.log('antes do push', cards);
 
     cards.push({
       id,
@@ -51,7 +54,13 @@ export function* addCard({ payload }) {
       tags: [],
     });
 
-    yield call(api.put, 'boards/1', board);
+    console.log('depois: ', cards);
+
+    newBoard.columns[listIndex].cards = cards;
+
+    console.log('depois +: ', cards);
+
+    yield call(api.put, 'boards/1', newBoard);
     yield put(addCardSuccess(cards));
   } catch (err) {
     toast.error('Um erro aconteceu: ', err);

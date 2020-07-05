@@ -11,44 +11,7 @@
             {
               "id": 2,
               "title": "Agendar as entrevistas",
-              "tags": [
-                "RH"
-              ]
-            },
-            {
-              "id": 3,
-              "title": "a",
-              "tags": []
-            },
-            {
-              "id": 4,
-              "title": "ab",
-              "tags": []
-            },
-            {
-              "id": 5,
-              "title": "abc",
-              "tags": []
-            },
-            {
-              "id": 6,
-              "title": "abcde",
-              "tags": []
-            },
-            {
-              "id": 7,
-              "title": "abcde",
-              "tags": []
-            },
-            {
-              "id": 8,
-              "title": "abcde",
-              "tags": []
-            },
-            {
-              "id": 9,
-              "title": "abcde",
-              "tags": []
+              "tags": ["RH"]
             }
           ]
         },
@@ -59,10 +22,7 @@
             {
               "id": 1,
               "title": "Elaborar o desafio técnico",
-              "tags": [
-                "Back-End",
-                "Front-End"
-              ],
+              "tags": ["Back-End", "Front-End"],
               "members": [
                 {
                   "id": 1,
@@ -75,11 +35,6 @@
                   "photoURL": null
                 }
               ]
-            },
-            {
-              "id": 2,
-              "title": "ab",
-              "tags": []
             }
           ]
         },
@@ -113,10 +68,5 @@
       "photoURL": null
     }
   ],
-  "tags": [
-    "Design",
-    "Front-End",
-    "Back-End",
-    "RH"
-  ]
+  "tags": ["Design", "Front-End", "Back-End", "RH"]
 }
