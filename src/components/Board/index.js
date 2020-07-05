@@ -74,8 +74,8 @@ export default function Board() {
             )}
           </BoardHeader>
           <BoardColumns>
-            {board?.[0]?.columns?.map((list) => (
-              <List key={list.id} data={list} />
+            {board?.[0]?.columns?.map((list, index) => (
+              <List key={list.id} data={list} listIndex={index} />
             ))}
           </BoardColumns>
         </>

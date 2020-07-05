@@ -6,11 +6,13 @@ export const Container = styled.div`
   box-shadow: 0px 1px 3px #00000029;
   border-radius: 3px;
   min-width: 320px;
+  min-height: 88px;
   cursor: grab;
 
   ${(props) =>
     props.isDragging &&
     css`
+      padding: 12px;
       border: 2px dashed rgba(0, 0, 0, 0.2);
       border-radius: 0;
       background: transparent;
@@ -51,5 +53,9 @@ export const Container = styled.div`
       height: 30px;
       border-radius: 50%;
     }
+  }
+
+  & + div {
+    margin-top: 14px;
   }
 `;

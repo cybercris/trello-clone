@@ -10,3 +10,17 @@ export function searchSuccess(type, list) {
     payload: { type, list },
   };
 }
+
+export function addCardRequest(card, listIndex) {
+  return {
+    type: '@trelloClone/ADD_CARD_REQUEST',
+    payload: { card, listIndex },
+  };
+}
+
+export function addCardSuccess(list) {
+  return {
+    type: '@trelloClone/ADD_CARD_SUCCESS',
+    payload: { list },
+  };
+}
