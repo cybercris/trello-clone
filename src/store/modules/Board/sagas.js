@@ -43,18 +43,14 @@ export function* addCard({ payload }) {
     const board = yield call(api.get, 'boards');
     const { cards } = board.data[0].columns[listIndex];
     const lastCard = cards.slice(-1);
-    console.log('id: ', lastCard[0].id);
 
     const newList = [
       ...cards,
-      { id: lastCard[0].id + 1, title: card, tags: [] },
+      { id: lastCard[0].id ? lastCard[0].id + 1 : 0, title: card, tags: [] },
     ];
     board.data[0].columns[listIndex].cards = newList;
-    console.log(board);
-    const res = yield call(api.post, 'boards', board);
-
-    console.log(res);
-    // // yield put(addCardSuccess(newList));
+    yield call(api.put, 'boards/1', board.data[0]);
+    yield put(addCardSuccess(newList));
   } catch (err) {
     toast.error('Um erro aconteceu: ', err);
   }

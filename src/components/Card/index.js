@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
+import { MdEdit } from 'react-icons/md';
 
 import { Container } from './styles';
 
@@ -43,7 +44,10 @@ export default function Card({ data, index }) {
 
   return (
     <Container ref={ref} isDragging={isDragging}>
-      <p>{data?.title}</p>
+      <div>
+        <p>{data?.title}</p>
+        <MdEdit />
+      </div>
 
       <footer>
         <div>
