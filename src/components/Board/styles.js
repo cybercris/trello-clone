@@ -136,6 +136,26 @@ export const RightSection = styled.div`
 
 export const BoardColumns = styled.div`
   display: flex;
+
+  form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-left: 10px;
+    width: 344px;
+    height: 52px;
+    padding: 0 14px;
+    background: #e4e6eb;
+
+    input {
+      border: 0;
+      font-size: 16px;
+      background: transparent;
+      color: #707070;
+      font-family: 'Roboto', sans-serif;
+    }
+  }
 `;
 
 export const ButtonAdd = styled.button`

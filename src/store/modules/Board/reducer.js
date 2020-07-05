@@ -4,7 +4,6 @@ const INITIAL_STATE = {
   board: [],
   people: [],
   tags: [],
-  listIndex: 0,
   loading: false,
 };
 
@@ -20,10 +19,6 @@ export default function auth(state = INITIAL_STATE, action) {
         draft.loading = false;
         break;
       }
-      case '@trelloClone/ADD_CARD_REQUEST': {
-        draft.listIndex = action.payload.listIndex;
-        break;
-      }
       case '@trelloClone/ADD_CARD_SUCCESS': {
         draft.board = action.payload.board;
         break;
@@ -37,6 +32,18 @@ export default function auth(state = INITIAL_STATE, action) {
         break;
       }
       case '@trelloClone/UPDATE_LIST_SUCCESS': {
+        draft.board = action.payload.board;
+        break;
+      }
+      case '@trelloClone/ADD_COLUMN_SUCCESS': {
+        draft.board = action.payload.board;
+        break;
+      }
+      case '@trelloClone/EDIT_COLUMN_SUCCESS': {
+        draft.board = action.payload.board;
+        break;
+      }
+      case '@trelloClone/DELETE_COLUMN_SUCCESS': {
         draft.board = action.payload.board;
         break;
       }

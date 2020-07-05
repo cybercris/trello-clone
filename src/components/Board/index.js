@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PulseLoader from 'react-spinners/PulseLoader';
 import produce from 'immer';
+import { MdCancel } from 'react-icons/md';
 
 import BoardContext from './context';
 import List from '../List';
@@ -54,6 +55,10 @@ export default function Board() {
         })
       )
     );
+  }
+
+  function addColumn(e) {
+    e.preventDefault();
   }
 
   return (
@@ -108,10 +113,17 @@ export default function Board() {
               {lists?.map((list, index) => (
                 <List key={list.id} data={list} listIndex={index} />
               ))}
-              <ButtonAdd onClick={() => setShowForm(!showForm)}>
-                <img src={Add} alt="icon add" />
-                COLUNA
-              </ButtonAdd>
+              {!showForm ? (
+                <ButtonAdd onClick={() => setShowForm(!showForm)}>
+                  <img src={Add} alt="icon add" />
+                  COLUNA
+                </ButtonAdd>
+              ) : (
+                <form onSubmit={(e) => addColumn(e)}>
+                  <input type="text" autoFocus />
+                  <MdCancel size={26} onClick={() => setShowForm(!showForm)} />
+                </form>
+              )}
             </BoardColumns>
           </>
         )}

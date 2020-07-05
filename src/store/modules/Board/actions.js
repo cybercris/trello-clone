@@ -66,16 +66,45 @@ export function updateListSuccess(board) {
     payload: { board },
   };
 }
-// export function moveCard(fromList, from, to) {
-//   return {
-//     type: '@trelloClone/MOVE_CARD',
-//     payload: { fromList, from, to },
-//   };
-// }
 
-// export function moveCardSuccess(board) {
-//   return {
-//     type: '@trelloClone/MOVE_CARD',
-//     payload: { board },
-//   };
-// }
+export function addColumnRequest(column, index) {
+  return {
+    type: '@trelloClone/ADD_COLUMN_REQUEST',
+    payload: { column, index },
+  };
+}
+
+export function addColumnSuccess(board) {
+  return {
+    type: '@trelloClone/ADD_COLUMN_SUCCESS',
+    payload: { board },
+  };
+}
+
+export function editColumnRequest(column, index) {
+  return {
+    type: '@trelloClone/EDIT_CARD_REQUEST',
+    payload: { column, index },
+  };
+}
+
+export function editColumnSuccess(board) {
+  return {
+    type: '@trelloClone/EDIT_CARD_SUCCESS',
+    payload: { board },
+  };
+}
+
+export function deleteColumnRequest(id, index) {
+  return {
+    type: '@trelloClone/DELETE_CARD_REQUEST',
+    payload: { id, index },
+  };
+}
+
+export function deleteColumnSuccess(board) {
+  return {
+    type: '@trelloClone/DELETE_CARD_SUCCESS',
+    payload: { board },
+  };
+}

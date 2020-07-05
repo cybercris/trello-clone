@@ -121,6 +121,27 @@ export function* updateLists({ payload }) {
   }
 }
 
+export function* addColumn({ payload }) {
+  try {
+  } catch (err) {
+    toast.error(err);
+  }
+}
+
+export function* editColumn({ payload }) {
+  try {
+  } catch (err) {
+    toast.error(err);
+  }
+}
+
+export function* deleteColumn({ payload }) {
+  try {
+  } catch (err) {
+    toast.error(err);
+  }
+}
+
 export default all([
   takeLatest('@trelloClone/SEARCH_REQUEST', getBoard),
   takeLatest('@trelloClone/SEARCH_REQUEST', getTags),
@@ -129,4 +150,7 @@ export default all([
   takeLatest('@trelloClone/EDIT_CARD_REQUEST', editCard),
   takeLatest('@trelloClone/DELETE_CARD_REQUEST', deleteCard),
   takeLatest('@trelloClone/UPDATE_LIST_REQUEST', updateLists),
+  takeLatest('@trelloClone/ADD_COLUMN_REQUEST', addColumn),
+  takeLatest('@trelloClone/EDIT_COLUMN_REQUEST', editColumn),
+  takeLatest('@trelloClone/DELETE_COLUMN_REQUEST', deleteColumn),
 ]);
