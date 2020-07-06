@@ -122,3 +122,10 @@ export function updateColSuccess(board) {
     payload: { board },
   };
 }
+
+export function filterCards(query, tags, owners) {
+  return {
+    type: '@trelloClone/FILTER_CARDS',
+    payload: { query, tags, owners },
+  };
+}

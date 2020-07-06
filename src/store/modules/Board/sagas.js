@@ -91,7 +91,6 @@ export function* editCard({ payload }) {
 export function* deleteCard({ payload }) {
   try {
     const { id } = payload;
-    console.log(id);
     const board = yield select((state) => state.Board.board);
 
     const boardToUpdate = produce(board, (draft) => {
@@ -151,7 +150,6 @@ export function* editColumn({ payload }) {
   try {
     const { title, index } = payload;
     const board = yield select((state) => state.Board.board);
-    console.log(title, index);
 
     const boardToUpdate = produce(board, (draft) => {
       let column = draft.columns[index];

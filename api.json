@@ -12,8 +12,14 @@
               "id": 2,
               "title": "Agendar as entrevistas",
               "tags": [
-                "RH",
-                "Front-End"
+                "RH"
+              ],
+              "owners": [
+                {
+                  "id": 1,
+                  "name": "Alex Pessoa",
+                  "photoURL": null
+                }
               ]
             }
           ]
@@ -26,7 +32,15 @@
               "id": 1,
               "title": "Elaborar o desafio técnico",
               "tags": [
-                "Back-End"
+                "Back-End",
+                "Front-End"
+              ],
+              "owners": [
+                {
+                  "id": 4,
+                  "name": "Marcio Mendes",
+                  "photoURL": null
+                }
               ]
             }
           ]

@@ -11,7 +11,7 @@ import {
   editCardRequest,
 } from '../../store/modules/Board/actions';
 
-import { Container, Info, Actions } from './styles';
+import { Container, Info, Actions, LastContent } from './styles';
 
 export default function Card({ data, index, listIndex }) {
   const ref = useRef();
@@ -19,17 +19,30 @@ export default function Card({ data, index, listIndex }) {
   const dispatch = useDispatch();
 
   const tags = useSelector((state) => state.Board.tags);
+  const people = useSelector((state) => state.Board.people);
   const [showForm, setShowForm] = useState(false);
   const [cardTitle, setCardTitle] = useState(data?.title ? data?.title : '');
   const options = useMemo(
     () => tags.map((tag) => ({ value: tag, label: tag })),
     [tags]
   );
+  const optionsP = useMemo(
+    () => people.map((owner) => ({ value: owner.id, label: owner.name })),
+    [people]
+  );
   const [selectedOptions, setSelectedOptions] = useState(
     data.tags
       ? data.tags.map((tag) => ({
           value: tag,
           label: tag,
+        }))
+      : []
+  );
+  const [selectedOptionsP, setSelectedOptionsP] = useState(
+    data.people
+      ? data.people.map((owner) => ({
+          value: owner.id,
+          label: owner.name,
         }))
       : []
   );
@@ -91,6 +104,9 @@ export default function Card({ data, index, listIndex }) {
       id: data.id,
       title,
       tags: selectedOptions.map((option) => option.value),
+      owners: selectedOptionsP.map((option) => {
+        return people.find((person) => person.id === option.value);
+      }),
     };
 
     dispatch(editCardRequest(newCard, listIndex));
@@ -114,8 +130,10 @@ export default function Card({ data, index, listIndex }) {
                 <p key={tag}>{tag}</p>
               ))}
             </div>
-            <img src={data.photoUrl ? data.photoUrl : null} alt="" />
           </Info>
+          <LastContent nomargin>
+            <img src={data.photoUrl ? data.photoUrl : null} alt="" />
+          </LastContent>
         </Container>
       ) : (
         <>
@@ -152,23 +170,27 @@ export default function Card({ data, index, listIndex }) {
                 </div>
               </div>
 
-              <img
-                src="https://api.adorable.io/avatars/abott@adorable.png"
-                alt=""
-              />
+              <img src="" alt="" />
             </Info>
           </Container>
           <Select
-            // defaultValue={data.tags.map((tag) => ({
-            //   value: tag,
-            //   label: tag,
-            // }))}
             isMulti
             name="tags"
             placeholder="Selecione as tags..."
             options={options}
             value={selectedOptions}
             onChange={setSelectedOptions}
+            className="basic-multi-select"
+            classNamePrefix="select"
+          />
+          <div style={{ marginBottom: '10px' }}></div>
+          <Select
+            isMulti
+            name="owners"
+            placeholder="Selecione os responsáveis pelo card..."
+            options={optionsP}
+            value={selectedOptionsP}
+            onChange={setSelectedOptionsP}
             className="basic-multi-select"
             classNamePrefix="select"
           />

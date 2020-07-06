@@ -32,20 +32,23 @@ export const BoardHeader = styled.header`
 export const Search = styled.div`
   display: flex;
 
-  input {
-    padding: 6px 12px 8px;
-    border: 1px solid #dadde2;
-    border-radius: 3px;
-    color: #000;
-    width: 40%;
-    margin-right: 10px;
-    font-size: 16px;
+  form {
+    width: 520px;
+    margin-right: 30px;
+    input {
+      padding: 6px 12px 8px;
+      border: 1px solid #dadde2;
+      border-radius: 3px;
+      color: #000;
+      width: 100%;
+      font-size: 16px;
 
-    &::placeholder {
-      font-family: 'Roboto', sans-serif;
-      font-style: italic;
-      font-weight: 400;
-      color: #9ca3ab;
+      &::placeholder {
+        font-family: 'Roboto', sans-serif;
+        font-style: italic;
+        font-weight: 400;
+        color: #9ca3ab;
+      }
     }
   }
 `;
@@ -86,6 +89,12 @@ export const LeftSection = styled.div`
   display: flex;
   margin-right: 20px;
   border-right: 1px solid #eee;
+
+  button {
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
 `;
 
 export const Person = styled.div`
@@ -94,7 +103,7 @@ export const Person = styled.div`
   margin-right: 20px;
 
   p {
-    color: #566780;
+    color: ${(props) => (props.isSelected ? '#2680EB' : '#566780')};
     font-size: 13px;
   }
 `;
@@ -111,6 +120,7 @@ export const Circle = styled.div`
   margin-right: 8px;
   color: #2680eb;
   font-size: 13px;
+  border: ${(props) => (props.isSelected ? '1px solid #2680eb' : 0)};
 `;
 
 export const RightSection = styled.div`
@@ -133,6 +143,14 @@ export const RightSection = styled.div`
       font-size: 12px;
     }
   }
+`;
+
+export const TagButton = styled.button`
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+
+  border: ${(props) => (props.isSelected ? '1px solid #2680eb' : 0)};
 `;
 
 export const BoardColumns = styled.div`

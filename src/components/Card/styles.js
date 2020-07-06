@@ -2,6 +2,8 @@ import styled, { css } from 'styled-components';
 import { lighten, darken } from 'polished';
 
 export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
   padding: 14px 12px;
   background: #ffffff;
   box-shadow: 0px 1px 3px #00000029;
@@ -12,8 +14,8 @@ export const Container = styled.div`
 
   div {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
 
     button {
       border: 0;
@@ -61,36 +63,6 @@ export const Container = styled.div`
   }
 
   footer {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-
-    button {
-      cursor: pointer;
-    }
-
-    button[type='submit'] {
-      padding: 10px;
-      background: #5aac44;
-      border: 0;
-      border-radius: 3px;
-      color: #fff;
-      font-size: 14px;
-      margin-right: 10px;
-
-      &:hover {
-        background: ${lighten(0.1, '#5aac44')};
-      }
-
-      &:active {
-        background: ${darken(0.1, '#5aac44')};
-      }
-    }
-
-    button[type='button'] {
-      border: 0;
-      background: transparent;
-    }
   }
 `;
 
@@ -116,17 +88,12 @@ export const Info = styled.div`
       }
     }
   }
-
-  img {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-  }
 `;
 
 export const Actions = styled.footer`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin-top: 10px;
   margin-bottom: 10px;
 
@@ -155,5 +122,22 @@ export const Actions = styled.footer`
   button[type='button'] {
     border: 0;
     background: transparent;
+  }
+`;
+
+export const LastContent = styled.footer`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  button[type='button'] {
+    border: 0;
+    background: transparent;
+  }
+
+  img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
   }
 `;

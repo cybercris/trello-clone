@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PulseLoader from 'react-spinners/PulseLoader';
-import produce from 'immer';
+import produce, { current } from 'immer';
 import { MdCancel } from 'react-icons/md';
 
 import BoardContext from './context';
@@ -11,6 +11,7 @@ import {
   searchRequest,
   updateListRequest,
   addColumnRequest,
+  filterCards,
 } from '../../store/modules/Board/actions';
 
 import {
@@ -26,22 +27,29 @@ import {
   BoardColumns,
   ButtonAdd,
   FormCol,
+  TagButton,
 } from './styles';
 import Arrowdown from '../../assets/icons/arrowdown.svg';
 import Add from '../../assets/imgs/add.png';
 
 export default function Board() {
   const dispatch = useDispatch();
+  const [filtered, setFiltered] = useState(false);
 
-  const board = useSelector((state) => state.Board.board);
+  const board = useSelector((state) =>
+    filtered ? state.Board.filteredBoard : state.Board.board
+  );
   const people = useSelector((state) => state.Board.people);
   const tags = useSelector((state) => state.Board.tags);
   const loading = useSelector((state) => state.Board.loading);
 
+  const lists = board.columns;
   const [showDropdown, setShowDropdown] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [colTitle, setColTitle] = useState('');
-  const lists = board.columns;
+  const [ownersSelected, setOwnersSelected] = useState([]);
+  const [tagsSelected, setTagsSelected] = useState([]);
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
     dispatch(searchRequest());
@@ -69,6 +77,18 @@ export default function Board() {
     }
   }
 
+  function callFilter(e) {
+    e.preventDefault();
+
+    dispatch(filterCards(query, null, null));
+    setFiltered(true);
+  }
+
+  function applyAdvancedFilter() {
+    dispatch(filterCards(query, tagsSelected, ownersSelected));
+    setFiltered(true);
+  }
+
   return (
     <BoardContext.Provider value={{ lists, move }}>
       <Container isLoading={loading}>
@@ -79,7 +99,14 @@ export default function Board() {
             <BoardHeader>
               <h1>{board?.title}</h1>
               <Search>
-                <input type="text" placeholder="Pesquisar" name="" id="" />
+                <form onSubmit={(e) => callFilter(e)}>
+                  <input
+                    type="text"
+                    placeholder="Pesquisar"
+                    onChange={(e) => setQuery(e.target.value)}
+                    value={query}
+                  />
+                </form>
                 <Button onClick={() => setShowDropdown(!showDropdown)}>
                   FILTRO AVANÇADO
                   <img
@@ -96,24 +123,78 @@ export default function Board() {
                       const spltName = person.name.toUpperCase().split(' ');
 
                       return (
-                        <Person key={person.id}>
-                          {person.photoURL ? (
-                            <img src={person.photoURL} alt="person avatar" />
-                          ) : (
-                            <Circle>{spltName[0][0] + spltName[1][0]}</Circle>
-                          )}
-                          <p>{person.name}</p>
-                        </Person>
+                        <button
+                          key={person.id}
+                          onClick={() => {
+                            let newList;
+                            if (
+                              ownersSelected?.find(
+                                (owner) => owner.id === person.id
+                              )
+                            ) {
+                              newList = ownersSelected.filter(
+                                (owner) => owner.id !== person.id
+                              );
+                            } else {
+                              newList = [...ownersSelected, person];
+                            }
+                            setOwnersSelected(newList);
+                          }}
+                        >
+                          <Person
+                            isSelected={
+                              ownersSelected?.filter(
+                                (owner) => owner.id === person.id
+                              )?.length > 0
+                            }
+                          >
+                            {person.photoURL ? (
+                              <img src={person.photoURL} alt="person avatar" />
+                            ) : (
+                              <Circle
+                                isSelected={
+                                  ownersSelected?.filter(
+                                    (owner) => owner.id === person.id
+                                  )?.length > 0
+                                }
+                              >
+                                {spltName[0][0] + spltName[1][0]}
+                              </Circle>
+                            )}
+                            <p>{person.name}</p>
+                          </Person>
+                        </button>
                       );
                     })}
                   </LeftSection>
                   <RightSection>
                     {tags?.map((tag) => (
-                      <div key={tag}>
-                        <p>{tag}</p>
-                      </div>
+                      <TagButton
+                        key={tag}
+                        isSelected={tagsSelected?.includes(tag)}
+                        onClick={() => {
+                          let newList;
+                          if (tagsSelected?.includes(tag)) {
+                            newList = tagsSelected.filter(
+                              (currentTag) => currentTag !== tag
+                            );
+                          } else {
+                            newList = [...tagsSelected, tag];
+                          }
+                          setTagsSelected(newList);
+                        }}
+                      >
+                        <div>
+                          <p>{tag}</p>
+                        </div>
+                      </TagButton>
                     ))}
                   </RightSection>
+                  {(ownersSelected.length > 0 || tagsSelected.length > 0) && (
+                    <button onClick={() => applyAdvancedFilter()}>
+                      Aplicar filtros
+                    </button>
+                  )}
                 </Dropdown>
               )}
             </BoardHeader>

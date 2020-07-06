@@ -83,8 +83,6 @@ export default function List({ data, listIndex }) {
   function editCol(e, title) {
     e.preventDefault();
 
-    console.log(title);
-
     if (columnTitle !== '') {
       dispatch(editColumnRequest(title, listIndex));
       setShowEditForm(!showEditForm);
