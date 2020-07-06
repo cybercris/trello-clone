@@ -11,9 +11,7 @@
             {
               "id": 2,
               "title": "Agendar as entrevistas",
-              "tags": [
-                "RH"
-              ],
+              "tags": ["RH"],
               "owners": [
                 {
                   "id": 2,
@@ -25,9 +23,7 @@
             {
               "id": 3,
               "title": "Aprovar o desafio técnico",
-              "tags": [
-                "Front-End"
-              ],
+              "tags": ["Front-End"],
               "owners": [
                 {
                   "id": 1,
@@ -45,10 +41,7 @@
             {
               "id": 1,
               "title": "Elaborar o desafio técnico",
-              "tags": [
-                "Back-End",
-                "Front-End"
-              ],
+              "tags": ["Back-End", "Front-End"],
               "members": [
                 {
                   "id": 1,
@@ -65,9 +58,7 @@
             {
               "id": 4,
               "title": "Sprint Review",
-              "tags": [
-                "Back-End"
-              ],
+              "tags": ["Back-End"],
               "owners": [
                 {
                   "id": 3,
@@ -79,9 +70,7 @@
             {
               "id": 6,
               "title": "Refatorar drag'n drop",
-              "tags": [
-                "Front-End"
-              ],
+              "tags": ["Front-End"],
               "owners": [
                 {
                   "id": 1,
@@ -99,9 +88,7 @@
             {
               "id": 5,
               "title": "Protótipo do desafio técnico",
-              "tags": [
-                "Design"
-              ],
+              "tags": ["Design"],
               "owners": [
                 {
                   "id": 4,
@@ -113,9 +100,7 @@
             {
               "id": 7,
               "title": "Arquitetura do desafio técnico",
-              "tags": [
-                "Front-End"
-              ],
+              "tags": ["Front-End"],
               "owners": [
                 {
                   "id": 1,
@@ -151,10 +136,5 @@
       "photoURL": null
     }
   ],
-  "tags": [
-    "Design",
-    "Front-End",
-    "Back-End",
-    "RH"
-  ]
+  "tags": ["Design", "Front-End", "Back-End", "RH"]
 }
