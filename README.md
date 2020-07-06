@@ -7,7 +7,7 @@
 </h3>
 
 <h3 align="center">
-  #github, #react, #reactjs, #styled-components, #redux, #redux-sagas
+ #react, #reactjs, #styled-components, #redux, #redux-sagas
 </h3>
 
 <p align="center">
@@ -20,7 +20,7 @@
 
 ## :rocket: About
 
-Simplified version of [Trello](https://trello.com/) that consumes a custom api.json from [json-server](https://github.com/typicode/json-server) and manipulates a board creating cards and columns
+Simplified version of [Trello](https://trello.com/) that consumes a custom api.json from [json-server](https://github.com/typicode/json-server) and manipulates a board managing cards and columns on kanban style
 
 ## :cloud: Demo
 
