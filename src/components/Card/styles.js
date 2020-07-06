@@ -15,7 +15,6 @@ export const Container = styled.div`
   div {
     display: flex;
     align-items: center;
-    justify-content: space-between;
 
     button {
       border: 0;
@@ -140,4 +139,17 @@ export const LastContent = styled.footer`
     height: 30px;
     border-radius: 50%;
   }
+`;
+
+export const Circle = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 30px;
+  min-width: 30px;
+  border-radius: 50%;
+  background: #eff5fb;
+  color: #2680eb;
+  font-size: 13px;
 `;

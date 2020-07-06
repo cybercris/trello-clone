@@ -109,16 +109,16 @@ export function deleteColumnSuccess(board) {
   };
 }
 
-export function updateColRequest(lists) {
+export function updateColumnRequest(lists) {
   return {
-    type: '@trelloClone/UPDATE_COL_REQUEST',
+    type: '@trelloClone/UPDATE_COLUMN_REQUEST',
     payload: { lists },
   };
 }
 
-export function updateColSuccess(board) {
+export function updateColumnSuccess(board) {
   return {
-    type: '@trelloClone/UPDATE_COL_SUCCESS',
+    type: '@trelloClone/UPDATE_COLUMN_SUCCESS',
     payload: { board },
   };
 }

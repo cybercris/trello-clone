@@ -12,6 +12,7 @@ import {
   updateListRequest,
   addColumnRequest,
   filterCards,
+  updateColumnRequest,
 } from '../../store/modules/Board/actions';
 
 import {
@@ -68,6 +69,18 @@ export default function Board() {
     );
   }
 
+  function moveCol(from, to) {
+    dispatch(
+      updateColumnRequest(
+        produce(lists, (draft) => {
+          const dragged = draft[from];
+          draft[from] = draft[to];
+          draft[to] = dragged;
+        })
+      )
+    );
+  }
+
   function addColumn(e, title) {
     e.preventDefault();
 
@@ -90,7 +103,7 @@ export default function Board() {
   }
 
   return (
-    <BoardContext.Provider value={{ lists, move }}>
+    <BoardContext.Provider value={{ lists, move, moveCol }}>
       <Container isLoading={loading}>
         {loading ? (
           <PulseLoader size={30} color="#707070" />

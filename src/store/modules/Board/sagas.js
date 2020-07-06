@@ -12,6 +12,7 @@ import {
   updateListSuccess,
   addColumnSuccess,
   editColumnSuccess,
+  updateColumnSuccess,
 } from './actions';
 
 export function* getBoard() {
@@ -184,6 +185,22 @@ export function* deleteColumn({ payload }) {
   }
 }
 
+export function* updateColumn({ payload }) {
+  try {
+    const { lists } = payload;
+    const board = yield select((state) => state.Board.board);
+
+    const boardToUpdate = produce(board, (draft) => {
+      draft.columns = lists;
+    });
+
+    yield call(api.put, 'boards/1', boardToUpdate);
+    yield put(updateColumnSuccess(boardToUpdate));
+  } catch (err) {
+    toast.error(err);
+  }
+}
+
 export default all([
   takeLatest('@trelloClone/SEARCH_REQUEST', getBoard),
   takeLatest('@trelloClone/SEARCH_REQUEST', getTags),
@@ -195,4 +212,5 @@ export default all([
   takeLatest('@trelloClone/ADD_COLUMN_REQUEST', addColumn),
   takeLatest('@trelloClone/EDIT_COLUMN_REQUEST', editColumn),
   takeLatest('@trelloClone/DELETE_COLUMN_REQUEST', deleteColumn),
+  takeLatest('@trelloClone/UPDATE_COLUMN_REQUEST', updateColumn),
 ]);

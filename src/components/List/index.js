@@ -1,8 +1,9 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import { MdClose, MdDeleteSweep } from 'react-icons/md';
 import { useDrag, useDrop } from 'react-dnd';
 
+import BoardContext from '../Board/context';
 import Card from '../Card';
 import {
   addCardRequest,
@@ -17,6 +18,7 @@ import Add from '../../assets/imgs/add.png';
 export default function List({ data, listIndex }) {
   const dispatch = useDispatch();
   const ref = useRef();
+  const { moveCol } = useContext(BoardContext);
 
   const [cardTitle, setCardTitle] = useState('');
   const [columnTitle, setColumnTitle] = useState(
@@ -43,24 +45,21 @@ export default function List({ data, listIndex }) {
       }
 
       const targetSize = ref.current.getBoundingClientRect();
-      const targetCenter = (targetSize.bottom - targetSize.top) / 2;
+      const targetCenter = (targetSize.right - targetSize.left) / 2;
 
       const draggedOffset = monitor.getClientOffset();
-      const draggedTop = draggedOffset.y - targetSize.top;
+      const draggedMiddle = draggedOffset.x - draggedOffset.left;
 
-      if (draggedIndex < targetIndex && draggedTop < targetCenter) {
+      if (draggedIndex < targetIndex && draggedMiddle < targetCenter) {
         return;
       }
 
-      if (draggedIndex > targetIndex && draggedTop > targetCenter) {
+      if (draggedIndex > targetIndex && draggedMiddle > targetCenter) {
         return;
       }
 
-      // move(draggedListIndex, targetListIndex, draggedIndex, targetIndex);
+      moveCol(draggedIndex, targetIndex);
       item.listIndex = targetIndex;
-      // item.listIndex = targetListIndex;
-
-      // dispatch(moveCard(draggedListIndex, draggedIndex, targetIndex));
     },
   });
 

@@ -11,7 +11,7 @@ import {
   editCardRequest,
 } from '../../store/modules/Board/actions';
 
-import { Container, Info, Actions, LastContent } from './styles';
+import { Container, Info, Actions, LastContent, Circle } from './styles';
 
 export default function Card({ data, index, listIndex }) {
   const ref = useRef();
@@ -39,8 +39,8 @@ export default function Card({ data, index, listIndex }) {
       : []
   );
   const [selectedOptionsP, setSelectedOptionsP] = useState(
-    data.people
-      ? data.people.map((owner) => ({
+    data.owners
+      ? data.owners.map((owner) => ({
           value: owner.id,
           label: owner.name,
         }))
@@ -117,7 +117,7 @@ export default function Card({ data, index, listIndex }) {
     <>
       {!showForm ? (
         <Container ref={ref} isDragging={isDragging}>
-          <div>
+          <div style={{ justifyContent: 'space-between' }}>
             <p>{data?.title}</p>
             <button onClick={() => setShowForm(!showForm)}>
               <MdEdit size={20} color="#707070" />
@@ -132,7 +132,15 @@ export default function Card({ data, index, listIndex }) {
             </div>
           </Info>
           <LastContent nomargin>
-            <img src={data.photoUrl ? data.photoUrl : null} alt="" />
+            {data?.owners?.map((owner) => {
+              const spltName = owner.name.toUpperCase().split(' ');
+
+              return owner.photoUrl ? (
+                <img src={owner.photoUrl} alt="" />
+              ) : (
+                <Circle>{spltName[0][0] + spltName[1][0]}</Circle>
+              );
+            })}
           </LastContent>
         </Container>
       ) : (

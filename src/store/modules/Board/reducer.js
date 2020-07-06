@@ -48,6 +48,10 @@ export default function auth(state = INITIAL_STATE, action) {
         draft.board = action.payload.board;
         break;
       }
+      case '@trelloClone/UPDATE_COLUMN_SUCCESS': {
+        draft.board = action.payload.board;
+        break;
+      }
       case '@trelloClone/FILTER_CARDS': {
         const query = action.payload.query;
         const owners = action.payload.owners;
