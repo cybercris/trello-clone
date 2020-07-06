@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PulseLoader from 'react-spinners/PulseLoader';
-import produce, { current } from 'immer';
+import produce from 'immer';
 import { MdCancel } from 'react-icons/md';
 
 import BoardContext from './context';
