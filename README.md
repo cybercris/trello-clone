@@ -20,7 +20,7 @@
 
 ## :rocket: About
 
-Simplified version of [Trello](https://trello.com/) that consumes a custom api.json from [json-server](https://github.com/typicode/json-server) and manipulates a board creating cards and columns
+Simplified version of [Trello](https://trello.com/) that consumes a custom api.json from [json-server](https://github.com/typicode/json-server) and manipulates a board managing cards and columns on kanban style
 
 ## :cloud: Demo
 
