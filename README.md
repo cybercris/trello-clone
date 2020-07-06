@@ -24,9 +24,8 @@ Simplified version of [Trello](https://trello.com/) that consumes a custom api.j
 
 ## :cloud: Demo
 
-Not yet
-
-<!-- [GithubSearch](https://githubsearch-reactjs.herokuapp.com/) -->
+Live-App: [https://trello-cybercris.herokuapp.com/](https://trello-cybercris.herokuapp.com/)
+Live-Server: [https://trello-api-c.herokuapp.com/](https://trello-api-c.herokuapp.com/)
 
 ## :space_invader: Features
 
