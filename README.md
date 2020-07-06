@@ -7,7 +7,7 @@
 </h3>
 
 <h3 align="center">
-  #github, #react, #reactjs, #styled-components, #redux, #redux-sagas
+ #react, #reactjs, #styled-components, #redux, #redux-sagas
 </h3>
 
 <p align="center">
