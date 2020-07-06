@@ -152,4 +152,8 @@ export const Circle = styled.div`
   background: #eff5fb;
   color: #2680eb;
   font-size: 13px;
+
+  & + div {
+    margin-left: 4px;
+  }
 `;

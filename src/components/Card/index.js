@@ -31,7 +31,7 @@ export default function Card({ data, index, listIndex }) {
     [people]
   );
   const [selectedOptions, setSelectedOptions] = useState(
-    data.tags
+    data?.tags
       ? data.tags.map((tag) => ({
           value: tag,
           label: tag,
@@ -39,7 +39,7 @@ export default function Card({ data, index, listIndex }) {
       : []
   );
   const [selectedOptionsP, setSelectedOptionsP] = useState(
-    data.owners
+    data?.owners
       ? data.owners.map((owner) => ({
           value: owner.id,
           label: owner.name,
