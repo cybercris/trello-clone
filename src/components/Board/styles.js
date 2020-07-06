@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { lighten, darken } from 'polished';
 
 export const Container = styled.div`
   display: flex;
@@ -128,12 +129,9 @@ export const RightSection = styled.div`
   align-items: center;
 
   div {
-    width: 70px;
-    height: 24px;
+    height: 100%;
     border-radius: 3px;
     background: #0000000a;
-    margin-right: 10px;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -145,7 +143,31 @@ export const RightSection = styled.div`
   }
 `;
 
+export const Actions = styled.div`
+  button {
+    padding: 8px;
+    background: #5aac44;
+    border: 0;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 14px;
+    margin-right: 10px;
+
+    &:hover {
+      background: ${lighten(0.1, '#5aac44')};
+    }
+
+    &:active {
+      background: ${darken(0.1, '#5aac44')};
+    }
+  }
+`;
+
 export const TagButton = styled.button`
+  margin-right: 10px;
+  width: 70px;
+  height: 24px;
+  border-radius: 3px;
   border: 0;
   background: transparent;
   cursor: pointer;

@@ -29,6 +29,7 @@ import {
   ButtonAdd,
   FormCol,
   TagButton,
+  Actions,
 } from './styles';
 import Arrowdown from '../../assets/icons/arrowdown.svg';
 import Add from '../../assets/imgs/add.png';
@@ -203,11 +204,18 @@ export default function Board() {
                       </TagButton>
                     ))}
                   </RightSection>
-                  {(ownersSelected.length > 0 || tagsSelected.length > 0) && (
-                    <button onClick={() => applyAdvancedFilter()}>
-                      Aplicar filtros
-                    </button>
-                  )}
+                  <Actions>
+                    {(ownersSelected.length > 0 || tagsSelected.length > 0) && (
+                      <button onClick={() => applyAdvancedFilter()}>
+                        Aplicar filtros
+                      </button>
+                    )}
+                    {filtered && (
+                      <button onClick={() => setFiltered(false)}>
+                        Resetar filtros
+                      </button>
+                    )}
+                  </Actions>
                 </Dropdown>
               )}
             </BoardHeader>
