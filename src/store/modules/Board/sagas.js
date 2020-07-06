@@ -21,7 +21,9 @@ export function* getBoard() {
 
     yield put(searchSuccess('board', board.data));
   } catch (err) {
-    toast.error('Um erro aconteceu: ', err);
+    toast.error(
+      'Um erro aconteceu! Verifique se o servidor está rodando corretamente'
+    );
   }
 }
 
@@ -31,7 +33,9 @@ export function* getTags() {
 
     yield put(searchSuccess('tags', tags.data));
   } catch (err) {
-    toast.error('Um erro aconteceu: ', err);
+    toast.error(
+      'Um erro aconteceu! Verifique se o servidor está rodando corretamente'
+    );
   }
 }
 
@@ -41,7 +45,9 @@ export function* getPeople() {
 
     yield put(searchSuccess('people', people.data));
   } catch (err) {
-    toast.error('Um erro aconteceu: ', err);
+    toast.error(
+      'Um erro aconteceu! Verifique se o servidor está rodando corretamente'
+    );
   }
 }
 
@@ -65,7 +71,9 @@ export function* addCard({ payload }) {
     yield call(api.put, 'boards/1', boardToUpdate);
     yield put(addCardSuccess(boardToUpdate));
   } catch (err) {
-    toast.error('Um erro aconteceu: ', err);
+    toast.error(
+      'Um erro aconteceu! Verifique se o servidor está rodando corretamente'
+    );
   }
 }
 
@@ -85,7 +93,9 @@ export function* editCard({ payload }) {
     yield call(api.put, 'boards/1', boardToUpdate);
     yield put(addCardSuccess(boardToUpdate));
   } catch (err) {
-    toast.error('Um erro aconteceu: ', err);
+    toast.error(
+      'Um erro aconteceu! Verifique se o servidor está rodando corretamente'
+    );
   }
 }
 
@@ -103,7 +113,9 @@ export function* deleteCard({ payload }) {
     yield call(api.put, 'boards/1', boardToUpdate);
     yield put(deleteCardSuccess(boardToUpdate));
   } catch (err) {
-    toast.error(err);
+    toast.error(
+      'Um erro aconteceu! Verifique se o servidor está rodando corretamente'
+    );
   }
 }
 
@@ -119,7 +131,9 @@ export function* updateLists({ payload }) {
     yield call(api.put, 'boards/1', boardToUpdate);
     yield put(updateListSuccess(boardToUpdate));
   } catch (err) {
-    toast.error(err);
+    toast.error(
+      'Um erro aconteceu! Verifique se o servidor está rodando corretamente'
+    );
   }
 }
 
@@ -143,7 +157,9 @@ export function* addColumn({ payload }) {
     yield call(api.put, 'boards/1', boardToUpdate);
     yield put(addColumnSuccess(boardToUpdate));
   } catch (err) {
-    toast.error(err);
+    toast.error(
+      'Um erro aconteceu! Verifique se o servidor está rodando corretamente'
+    );
   }
 }
 
@@ -165,7 +181,9 @@ export function* editColumn({ payload }) {
     yield call(api.put, 'boards/1', boardToUpdate);
     yield put(editColumnSuccess(boardToUpdate));
   } catch (err) {
-    toast.error(err);
+    toast.error(
+      'Um erro aconteceu! Verifique se o servidor está rodando corretamente'
+    );
   }
 }
 
@@ -181,7 +199,9 @@ export function* deleteColumn({ payload }) {
     yield call(api.put, 'boards/1', boardToUpdate);
     yield put(deleteCardSuccess(boardToUpdate));
   } catch (err) {
-    toast.error(err);
+    toast.error(
+      'Um erro aconteceu! Verifique se o servidor está rodando corretamente'
+    );
   }
 }
 
@@ -197,7 +217,9 @@ export function* updateColumn({ payload }) {
     yield call(api.put, 'boards/1', boardToUpdate);
     yield put(updateColumnSuccess(boardToUpdate));
   } catch (err) {
-    toast.error(err);
+    toast.error(
+      'Um erro aconteceu! Verifique se o servidor está rodando corretamente'
+    );
   }
 }
 
