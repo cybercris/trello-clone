@@ -103,6 +103,12 @@ export default function Board() {
     setFiltered(true);
   }
 
+  function resetFilter() {
+    setFiltered(false);
+    setOwnersSelected([]);
+    setTagsSelected([]);
+  }
+
   return (
     <BoardContext.Provider value={{ lists, move, moveCol }}>
       <Container isLoading={loading}>
@@ -211,7 +217,7 @@ export default function Board() {
                       </button>
                     )}
                     {filtered && (
-                      <button onClick={() => setFiltered(false)}>
+                      <button onClick={() => resetFilter()}>
                         Resetar filtros
                       </button>
                     )}

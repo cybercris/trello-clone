@@ -71,6 +71,7 @@ export default function List({ data, listIndex }) {
     if (value !== '') {
       dispatch(addCardRequest(value, listIndex));
       setShowForm(!showForm);
+      setCardTitle('');
     }
   }
 
