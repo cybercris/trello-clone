@@ -25,7 +25,9 @@ Simplified version of [Trello](https://trello.com/) that consumes a custom api.j
 ## :cloud: Demo
 
 Live-App: [https://trello-cybercris.herokuapp.com/](https://trello-cybercris.herokuapp.com/)
+
 Live-Server: [https://trello-api-c.herokuapp.com/](https://trello-api-c.herokuapp.com/)
+
 *Any changes on live-app will be directly send to live-server 
 
 ## :space_invader: Features
